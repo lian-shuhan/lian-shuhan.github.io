@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Python爬虫 |  
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/images/avatar.gif" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="半篙波暖遇重逢" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Python2"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Python爬虫
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/29/Python2/" class="article-date">
+  <time datetime="2020-03-29T13:28:51.000Z" itemprop="datePublished">2020-03-29</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.6k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">6 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="一、-Requests"><a href="#一、-Requests" class="headerlink" title="一、 Requests"></a>一、 Requests</h2><p><strong>自动爬取HTML页面，自动网络请求提交</strong></p>
+<ol>
+<li><p><strong>安装库</strong></p>
+<pre>pip install requests
+</pre> 
+<a id="more"></a>
+</li>
+<li><p><strong>Requests库的主要方法</strong></p>
+<ul>
+<li>requests.request（method,url,**kwargs） </li>
+<li><strong>requests.get()</strong> 获取HTML网页</li>
+<li><strong>requests.head()</strong> 获取HTML网页头信息</li>
+<li><strong>requests.post()</strong> 向HTML网页提交POST请求(即附加新数据)</li>
+<li><strong>requests.put()</strong> 向HTML网页提交PUT请求(即修改且覆盖原数据)</li>
+<li><strong>requests.patch()</strong> 向HTML网页提交局部修改请求</li>
+<li><strong>requests.delete()</strong> 向HTML网页提交删除请求</li>
+</ul>
+</li>
+<li><p><strong>get方法</strong></p>
+<pre>r = requests.get(url，params=None,**kwargs)</pre>
+<p>response对象中包含爬虫返回的内容，其属性:</p>
+<ul>
+<li><strong>r.status_code</strong> HTTP请求的返回状态(200为连接成功)</li>
+<li><strong>r.text</strong> HTTP响应的字符串，即url的页面内容</li>
+<li><strong>r.encoding</strong> 从HTTP header中猜测的响应内容编码方式(若header中不存在charset，则认为编码为ISO-8859-1)</li>
+<li><strong>r.apparent_encoding</strong> 从内容中分析的响应内容编码方式(备选,真实)</li>
+<li><strong>r.content</strong> HTTP响应内容的二进制形式<br>（<strong>r.requests.xxx</strong> 爬虫发给服务器的xxx信息）</li>
+</ul>
+</li>
+<li><p><strong>爬取网页的通用代码框架</strong></p>
+<pre>import requests
+def getHTMLText(url):
+     try:
+         r = requests.get(url,timeout = 30)
+         r.raise_for_status() #如果状态不是200.引发HTTPError异常
+         r.encoding = r.apparent_encoding
+         return r.text
+     except:
+         return "产生异常"
+if __name__ == "__main__": 
+     url = "http://www.baidu.com" 
+     print(getHTMLText(url))</pre>
+</li>
+<li><p><strong>HTTP协议</strong>: 超文本传输协议,基于请求与响应模式、无状态的应用层协议(主要方法同上的requests功能一致)。<br><strong>URL</strong>是通过HTTP协议存取资源的Internet路径。</p>
+</li>
+</ol>
+<h2 id="二、-robots-txt"><a href="#二、-robots-txt" class="headerlink" title="二、 robots.txt"></a>二、 robots.txt</h2><p><strong>网络爬虫排除标准</strong></p>
+<ol>
+<li><p>网络爬虫引发的问题: 骚扰问题；法律风险；隐私泄露</p>
+</li>
+<li><p>网络爬虫的限制: </p>
+<ul>
+<li><strong>来源审查</strong>：判断User-­Agent进行限制</li>
+<li><strong>发布公告</strong>：Robots协议，即告知所有爬虫网站的爬取策略，要求爬虫遵守</li>
+</ul>
+</li>
+<li><p><strong>Robots协议</strong>(即网络爬虫排除标准)</p>
+<ul>
+<li>在网站根目录下的robots.txt文件中</li>
+<li>基本语法: <pre>User-agent: *<br>Disallow: /</pre></li>
+</ul>
+</li>
+<li><p>例子</p>
+<pre>kv = {'user‐agent':'Mozilla/5.0'} 
+r = requests.get(url,headers=kv) # 模拟标准浏览器访问
+/
+kv = {'wd':'keyword'} 
+r = requests.get("http://www.baidu.com/s",params=kv) # 向url中增加关键词内容
+/
+with open("path",'wb') as f:
+f.write(r.content) #将爬取的内容写入本地path
+</pre>
+
+</li>
+</ol>
+<h2 id="三、-Beautiful-Soup"><a href="#三、-Beautiful-Soup" class="headerlink" title="三、 Beautiful Soup"></a>三、 Beautiful Soup</h2><p><strong>解析HTML页面</strong></p>
+<ol>
+<li><p>Beautiful Soup是解析、遍历、维护“标签树”(HTML/XML)的功能库</p>
+</li>
+<li><p><strong>解析器</strong>有: html.parser/lxml/xml/html5lib(后三种需安装对应的库)</p>
+</li>
+<li><p><strong>Beautiful Soup类的基本元素</strong>: Tag/name/attrs(属性，字典形式)/string/Comment（&lt;!）</p>
+</li>
+<li><p><strong>HTML内容遍历方法</strong></p>
+<ul>
+<li><strong>下行遍历</strong>: .contents(子节点列表);.chridren(子节点类型);.descendants(子孙节点迭代类型，如: <pre>for child in soup.a.descendants:
+print(child)</pre></li>
+<li><strong>上行遍历</strong>: .parent(父亲标签);.parents(先辈标签的迭代类型)</li>
+<li><strong>平行遍历</strong>(同一个父节点下): .next_sibling;.previous_sibling;.next_siblings;.previous_siblings。</li>
+</ul>
+</li>
+<li><p>编码: bs4库将demo皆转化为<strong>utf-8编码</strong>。</p>
+</li>
+<li><p><strong>信息标记</strong>的三种形式: XML(基于HTML)/JSON(有数据类型的键值对)/YAML(无类型的键值对)</p>
+</li>
+<li><p>信息提取的一般方法: 结合形式解析与搜索方法，提取关键信息-需要标记解析器及文本查找函数</p>
+<pre>from bs4 import BeautifulSoup
+soup = BeautifulSoup(demo,"html.parser") #对demo进行HTML解析
+print(soup.prettify()) #格式输出
+soup.a #输出a标签 
+soup.a.parent.name #a的上一层标签的名字(元素)
+soup.find_all(name,attrs,recursive,string,**kwargs) #显示对应(标签名、属性值,是否对儿节点以下搜索，字符串)的标签信息
+soup.find_all(x = re.compile()) # 对x参数赋值正则表达式的方法值</pre>
+
+</li>
+</ol>
+<h2 id="四、-Projects"><a href="#四、-Projects" class="headerlink" title="四、 Projects"></a>四、 Projects</h2><ol>
+<li>中国大学排名定向爬虫</li>
+</ol>
+<pre>from bs4 import BeautifulSoup
+import requests
+import bs4
+
+def getHTMLText(url):
+    try:
+        r = requests.get(url,timeout = 30)
+        r.raise_for_status()
+        r.encoding = r.apparent_encoding
+        return r.text
+    except:
+        return ""
+
+def fillUnivList(ulist,html):
+    soup = BeautifulSoup(html,"html.parser")
+    for tr in soup.find('tbody').children:
+        if isinstance(tr,bs4.element.Tag):
+            tds = tr('td')
+            ulist.append([tds[0].string, tds[1].string, tds[3].string])
+    pass
+
+def printUnivList(ulist,num):
+    tplt = "{0:^10}\t{1:{3}^10}\t{2:^10}"
+    print(tplt.format("排名","学校名称","总分",chr(12288)))
+    for i in range(num):
+        u=ulist[i]
+        print(tplt.format(u[0], u[1], u[2],chr(12288)))
+
+def main():
+    uinfo = []
+    url = 'http://www.zuihaodaxue.cn/zuihaodaxuepaiming2016.html'
+    html = getHTMLText(url)
+    fillUnivList(uinfo, html)
+    printUnivList(uinfo, 20) #num = 20
+main()</pre>
+
+<h2 id="五、-Re"><a href="#五、-Re" class="headerlink" title="五、 Re"></a>五、 Re</h2><p><strong>正则表达式详解，提取页面关键信息</strong></p>
+<ol>
+<li><p>正则表达式: 通用的字符串表达框架。<br><strong>编译</strong>: 将一个正则表达式语法的字符串转化成一个特(即一个对象)，该特征对应一组字符串。</p>
+</li>
+<li><p><strong>语法</strong>-<strong>常用操作符</strong>:<br>.任何单个字符<br>[ ]对单字符给出取值范围<br>[^]对单字符给出排除范围<br>*前一个字符出现0次或无限次<br>+前一个字符出现1次或无限次扩展<br>?前一个字符出现0次或1次<br>|左右表达式任意一个<br>{m}扩展前一个字符m次<br>{m,n}扩展前一个字符m至n次<br>^匹配字符串开头<br>$匹配字符串结尾<br>( )分组标记，内部只能使用 | 操作符<br>\d数字<br>\w单词字符</p>
+</li>
+<li><p><strong>Re库</strong>-标准库<br>正则表达式-<strong>raw string</strong>(即不含转义符)-表示为: r’text’<br>主要功能函数: </p>
+<ul>
+<li><strong>re.search(pattern,string,flags=0)</strong> 在一个字符串中搜索匹配正则表达式的第一个位置，返回match对象 </li>
+<li><strong>re.match()</strong> 从一个字符串的开始位置起匹配正则表达式，返回match对象</li>
+<li><strong>re.findall()</strong> 搜索字符串，以列表类型返回全部能匹配的子串 </li>
+<li><strong>re.split(pattern,string,maxsplit=0,flags=0)</strong> 将一个字符串按照正则表达式匹配结果进行分割。返回列表类型(不匹配的) </li>
+<li><strong>re.finditer()</strong> 搜索字符串，返回一个匹配结果的迭代类型，每个迭代元素是match对象 </li>
+<li><strong>re.sub(pattern,repl,string,count=0,flags=0)</strong> 在一个字符串中替换所有匹配正则表达式的子串，返回替换后的字符串</li>
+<li>两种用法：<pre>rst = re.search() # 函数式(一次性操作)
+regex = re.complie(pattern，flags=0)#面向对象(编译后多次操作)
+rst = regex.search(string) <\pre>
+</li>
+</ul>
+</li>
+<li><p><strong>match对象</strong></p>
+<ul>
+<li>属性: </li>
+</ul>
+<p><strong>.string</strong> 待匹配的文本<br>**.re** 匹配时使用的pattern对象<br>**.pos** 正则表达式搜索文本的开始位置<br>**.endpos** 正则表达式搜索文本的结束位置 </p>
+<ul>
+<li>方法: </li>
+</ul>
+<p><strong>.group(0)</strong> 获得匹配后的字符串<br>**.start()** 匹配字符串在原始字符串的开始位置<br>**.end()** 匹配字符串在原始字符串的结束位置<br>**.span()** 返回(.start(),.end())</p>
+</li>
+<li><p>同时匹配长短不同的多项时：</p>
+<ul>
+<li><strong>贪婪匹配</strong>(Re库默认): 输出匹配最长的子串</li>
+<li><strong>最小匹配</strong>: */+/?/{m,n}后加?</li>
+</ul>
+</li>
+</ol>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/03/29/Python2/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/" rel="tag">Python</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/04/07/Python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            Python数据结构与算法
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A010/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">降维与度量学习-机器学习</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "pl4JaXjNbs8PqLO9lHTzuHQy-gzGzoHsz",
+    app_key: "mNqyAYwB5OwYsRNSyHavIrKK",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2020
+        <i class="ri-heart-fill heart_icon"></i> 练书菡
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/avatar.gif" alt="半篙波暖遇重逢"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">目录</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/Python/">Python</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%8A%80%E8%83%BD/">技能</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+<script src="/js/dz.js"></script>
+
+
+
+    
+  </div>
+</body>
+
+</html>

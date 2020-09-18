@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    Web前端开发基础 |  
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/images/avatar.gif" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="半篙波暖遇重逢" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-Web前端开发"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  Web前端开发基础
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/04/08/Web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" class="article-date">
+  <time datetime="2020-04-08T06:53:24.000Z" itemprop="datePublished">2020-04-08</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.4k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">10 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="一、-概论"><a href="#一、-概论" class="headerlink" title="一、 概论"></a>一、 概论</h2><ol>
+<li><p>Web-Web系统；前端-网页上为用户呈现的部分；开发-编写代码。</p>
+<a id="more"></a>
+</li>
+<li><p>服务器端: 网站-文件夹；网页-文件。<br>浏览器: 解析网页源代码，渲染网页。</p>
+</li>
+<li><p><strong>前端技术构成</strong></p>
+<ul>
+<li>结构-<strong>HTML</strong>: 从语义角度描述页面结构。</li>
+<li>样式-<strong>CSS</strong>: 美化页面。</li>
+<li>行为-<strong>JavaScript</strong>: 从交互角度提升用户体验。</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、-HTML基础"><a href="#二、-HTML基础" class="headerlink" title="二、 HTML基础"></a>二、 HTML基础</h2><ol>
+<li><p>HTML-超文本标记语言-<strong>HTML DOM</strong></p>
+</li>
+<li><p><strong>标签</strong></p>
+<ul>
+<li><code>h1</code>-<code>h6</code> 标题</li>
+<li><code>p</code> 段落</li>
+<li><code>&lt;br/&gt;</code> 段内换行 ；<code>&amp;nbsp</code> 空格字符</li>
+<li><code>pre</code> 预留格式</li>
+<li><code>span</code> 行内组合</li>
+<li><code>&lt;hr /&gt;</code> 水平线</li>
+<li><code>&lt;!--  --&gt;</code> 注释</li>
+<li><code>&lt;a href=&quot;网址&quot;&gt;&lt;/a&gt;</code> 超链接</li>
+<li><code>&lt;img src=&quot;相对路径&quot;/&gt;</code> 图片</li>
+<li><code>div</code> <strong>区域</strong></li>
+<li><code>ul</code> 无序列表/<code>ol</code> 有序列表&gt;<code>li</code> 列表项</li>
+<li><code>table</code> 表格&gt;<code>tr</code> 行&gt;<code>td</code> 单元格/<code>th</code> 表头单元格</li>
+<li><code>form</code> 表单&gt;<br><code>&lt;input type=&quot;text|password&quot; name=&quot;&quot; /&gt;</code> 文本框|密码框<br><code>&lt;input type=&quot;submit|reset&quot; value=&quot;&quot; /&gt;</code>提交按钮|重置按钮<br><code>&lt;input type=&quot;radio|checkbox&quot; value=&quot;值&quot; name=&quot;名称&quot; checked= /&gt;</code>单选框|复选框<br><code>select</code> 下拉列表&gt;<code>option selected=</code> 选项<br><code>textarea rows=行 cols=列</code> 文本域</li>
+</ul>
+</li>
+<li><p>Web语义化-标签</p>
+<ul>
+<li>优点: 结构清晰、有利于搜索引擎理解-SEO搜索引擎优化、易兼容不同设备。</li>
+<li><code>em</code> 斜体(强调)/<code>strong</code> 粗体(重点强调)</li>
+<li><code>dl</code> 自定义列表&gt;<code>dt</code> 列表项&gt;<code>dd</code> 描述</li>
+</ul>
+</li>
+</ol>
+<h2 id="三、-CSS样式"><a href="#三、-CSS样式" class="headerlink" title="三、 CSS样式"></a>三、 CSS样式</h2><ol>
+<li><p><strong>CSS添加方法</strong>: 行内样式&gt;内嵌样式&gt;链接样式(就近原则)<br><strong>CSS选择器</strong>: 标签/类别/ID选择器<br><strong>选择器的叠加用法</strong>: 嵌套/集体/全局声明</p>
+</li>
+<li><p><strong>文本</strong>:</p>
+<ul>
+<li>大小: px(像素)；em(字符)；%(百分比)</li>
+<li>颜色: name；rgb()；rgba()；##rrggbb</li>
+<li>属性: letter-spacing(字符间距)；line-height(行高)；text-align(对齐)；text-decoration(装饰线)；text-indent(首行缩进)</li>
+</ul>
+</li>
+<li><p><strong>字体</strong>: font(斜体 粗体 字号/行高 字体)；font-family(字体系列)；font-size(字号)；font-style(斜体italic)；font-weight(粗体bold)</p>
+</li>
+<li><p><strong>背景</strong>: background-/color/image: url()/repeat: repeat-()</p>
+</li>
+<li><p><strong>超链接</strong>-伪类选择器: a:link/visited/hover/active</p>
+</li>
+<li><p><strong>列表标号</strong>: list-style-/image: url()/position/type</p>
+</li>
+<li><p><strong>表格</strong>: width,height/border(边框)/border-collapse(边框合并)/<code>:nth-child(odd|even)</code> 奇偶选择器</p>
+</li>
+</ol>
+<h2 id="四、-CSS布局与定位"><a href="#四、-CSS布局与定位" class="headerlink" title="四、 CSS布局与定位"></a>四、 CSS布局与定位</h2><ol>
+<li><p><strong>盒子模型</strong></p>
+<ul>
+<li>组成: content、height、width、padding、border、margin</li>
+<li>内容溢出，使用overflow属性(hidden/scroll/auto)</li>
+<li>border子属性: -width/style/color</li>
+<li>margin属性垂直方向合并；水平居中用auto</li>
+</ul>
+</li>
+<li><p><strong>CSS定位机制</strong></p>
+<ul>
+<li><strong>文档流定位</strong>(默认): 元素-block(独占一行且可设高宽)/inline(相反)/inline-block(不独占一行且可设高宽)；类型转换-display: none-</li>
+<li><strong>浮动定位</strong>: float(浮动，即脱离文档流)；clear(清除浮动)</li>
+<li><strong>层定位</strong>: position: fixed/relative(参照物为父元素，原位置仍存在)/absolute(参照物为最近的定义为相对/绝对的父元素，原位置不存在)<br>一般父元素相对定位，子元素绝对定位</li>
+</ul>
+</li>
+</ol>
+<h2 id="五、-CSS3"><a href="#五、-CSS3" class="headerlink" title="五、 CSS3"></a>五、 CSS3</h2><ol>
+<li><p>浏览器内核-浏览器-<strong>CSS3前缀</strong>:<br>Webkit-Safari/Chrome- -webkit-<br>Gecko-Firefox- -moz-<br>Trident-IE- -ms-</p>
+</li>
+<li><p><strong>圆角边框</strong>: border- -radius: 水平 垂直<br><strong>阴影</strong>: box-shadow</p>
+</li>
+<li><p><strong>文本与文字</strong>的新属性:</p>
+<ul>
+<li>text-shadow 阴影</li>
+<li>word-wrap: break-word 长单词、url分行</li>
+<li>@font-face规则: 定义Web字体(在服务器端生成4种字体文件并引用)</li>
+</ul>
+</li>
+<li><p><strong>2D变换</strong>-transform: rotate(deg)/scale(x,y)</p>
+</li>
+<li><p><strong>过渡</strong>(一般与超链接hover的变换合用): transition: property duration time-function<br><strong>动画</strong>: animation: name time time-function(@keyframes规则定义动画，关键帧{取值}）</p>
+</li>
+<li><p><strong>3D变换</strong>: transfrom-style: preserve-3d<br>transform: rotateX(deg)-父容器<br>perspective: -舞台</p>
+</li>
+</ol>
+<h2 id="六、-JavaScript基础"><a href="#六、-JavaScript基础" class="headerlink" title="六、 JavaScript基础"></a>六、 JavaScript基础</h2><ol>
+<li><p>JS: <strong>解释型脚本语言</strong>(运行前不编译，不检查错误)(编译型: C/C++)<br><strong>运行环境</strong>: NodeJS，浏览器内核中的JS解释器。<br><strong>JS组成</strong>: 核心(ECMAScript)，文档对象模型(DOM,与网页对话)，浏览器对象模型(BOM，与浏览器对话)。<br><strong>浏览器内核</strong>: 内容排版引擎(解析HTML和CSS)，脚本解释引擎(解析Javascript)<br><strong>程序</strong>=数据结构+算法。程序的结构: 顺序、分支、循环。<strong>算法</strong>: 解决问题的步骤。<strong>数据结构</strong>: 数据在内存中的存储结构。</p>
+</li>
+<li><p><strong>将JS脚本嵌入HTML</strong>的三种方法</p>
+<ul>
+<li><code>&lt;div id=&quot;&quot; 事件=JS代码&gt;xx&lt;/div&gt;</code></li>
+<li><code>&lt;script&gt;JS代码&lt;/script&gt;</code>(可在任意位置)</li>
+<li><code>&lt;script src=&quot;js文件路径&quot;&gt;&lt;/script&gt;</code>(在head中)</li>
+</ul>
+</li>
+<li><p><strong>变量</strong></p>
+<ul>
+<li><strong>内存</strong>: 保存程序运行过程中所需的数据。8bit=1byte</li>
+<li><strong>变量</strong>: 内存中的一段存储空间。(<strong>名</strong>: 内存空间的别名；<strong>值</strong>: 保存在内存空间中的数据)</li>
+<li><strong>变量声明</strong>: <code>var 变量名=值</code>，为局部变量-console.log/document.write(变量名)=值(相当于print)</li>
+</ul>
+</li>
+<li><p><strong>数据类型</strong>(弱类型)&amp;<strong>运算符</strong></p>
+<ul>
+<li><strong>基本类型</strong>: 数字(number)、字符串(“”-Unicode-2字节)、布尔、空、未定义、(NaN=Not a number)<br>转换分为隐式转换和强制转换()。</li>
+<li><strong>引用类型</strong></li>
+<li>三目运算符 表达式1?表达式2:表达式3;</li>
+</ul>
+</li>
+<li><p><strong>函数</strong><br>声明 function 函数名(参数){可执行语句；return}<br>(要想使用函数内的全局变量，需先调用函数。)<br>(函数参数默认为局部变量)<br>(变量和函数声明提前，但赋值保留）<br>(传参的本质为全局变量复制副本给局部变量)</p>
+</li>
+<li><p><strong>分支结构</strong>: if-else(){}/switch(){case 值: 语句;break;}即做等值判断<br><strong>循环结构</strong>: while(){}/do{}while()/for(;;){}</p>
+</li>
+<li><p><strong>数组</strong>: 内存中连续存储多个数据的数据结构。</p>
+<ul>
+<li>索引数组: 创建 <code>var arr=[]/arr=new Array()</code> 长度: <code>arr.length</code></li>
+<li>关联数组(hash，相当于字典): <code>arr[key]=元素值</code>(用hash[key]获取)</li>
+<li><strong>数组API函数</strong>: String(arr)/arr.join(“”)/arr.concat()拼接/arr.slice(含头不含尾)选取/arr.splice(starti，n，添加值)删除/arr.reverse()颠倒/arr.sort</li>
+</ul>
+</li>
+<li><p><strong>DOM</strong>: 文档对象模型，与平台和语言无关的应用程序接口(API)，可以动态地访问程序和脚本，并对其进行更新。<br><strong>DOM标准</strong>: 核心DOM；HTML DOM。</p>
+<ul>
+<li><strong>查找元素</strong><br><code>document.getElementById(&quot;id&quot;)</code><strong>最重要，用于JS代码中引入html元素，以便后续处理</strong><br><code>parent.getElementsByTagName(&quot;tag&quot;)</code><br><code>document.getElementsByName(&quot;name&quot;)</code><br><code>parent.getElementsByClassName(&quot;class&quot;)</code><br><code>parent.querySelector(All)(&quot;CSSselector&quot;)</code></li>
+<li><strong>修改</strong>(<strong>核心DOM</strong>)<br>属性值:<code> elem.getAttribute(&quot;属性名&quot;)</code>-读取<br><code>elem.setAttribute(&quot;属性名&quot;,value)</code>-修改<br><code>elem.hasAttribute(&quot;属性名&quot;)</code>-判断<br><code>elem.removeAttribute(&quot;属性名&quot;)</code>-移除<br>样式: <code>elem.style.属性名</code>(内联，去横杠变大写)</li>
+<li><strong>添加元素</strong>:<br><code>elem=document.createElement(&quot;元素名&quot;)</code>-创建空元素<br><code>a.属性名=&quot;属性值&quot;</code>-设置属性<br><code>a.style.样式名(cssText)=&quot;&quot;</code>-设置样式<br><code>parentNode.appendChild(childNode)</code>/<code>parentNode.insertBefore(newChild，existingChild)</code>-添加到DOM树(优化: 使用文档片段)</li>
+</ul>
+</li>
+<li><p><strong>BOM</strong>: 浏览器对象模型，专门操作浏览器窗口的API。<br>定时器: 周期性<code>timer=setInterval(exp,time)</code> 停止<code>clearInterval(timer)</code><br>一次性: <code>setTimeout(exp,time)</code></p>
+</li>
+</ol>
+<h2 id="七、-JQuery"><a href="#七、-JQuery" class="headerlink" title="七、 JQuery"></a>七、 JQuery</h2><ol>
+<li><p><strong>JQuery概述</strong>: 对DOM操作的终极简化<br>使用: 下载JQuery.js到本地，再通过script引入/使用CDN网络中共享的JQuery.js。再引入我们所编写的JQery代码的JS文件。<br><strong>工厂函数</strong>: 选择符$()，一般为$(“标签名/.class值/#id值”)</p>
+</li>
+<li><p><strong>JQuery增删改查</strong></p>
+<ul>
+<li>查找元素-兄弟关系: $(“…”).next/prev/nextAll/prevAll/siblings()，其他同CSS</li>
+<li>读取/修改(对属性): <code>$(&quot;&quot;).attr(&quot;标签属性名&quot;,值)</code></li>
+<li>读取/修改(对内容):<br><code>$(&quot;&quot;).html(&quot;&quot;)</code> html操作<br><code>html/$(&quot;&quot;).text(&quot;&quot;)</code> 文本操作<br><code>$(&quot;&quot;).val(&quot;&quot;)</code> 值操作</li>
+<li>读取/修改(对样式):<br><code>$(&quot;&quot;).css(&quot;CSS属性名,值&quot;)</code>直接修改css属性<br><code>$(&quot;&quot;).hasClass(&quot;类名，即class&quot;)</code>/<code>$(&quot;&quot;).addClass()</code>/<code>$(&quot;&quot;).removeClass()</code> 通过修改class</li>
+<li>添加元素: <code>var $newelem=$(&quot;html代码&quot;)</code>，<code>$(parent).append($newelem)</code></li>
+<li>删除: <code>$(&quot;&quot;).remove(&quot;&quot;)</code>，(如选第二个li <code>$(&quot;ul li:eq(1)&quot;</code>)</li>
+</ul>
+</li>
+<li><p><strong>JQuery事件</strong>-事件绑定: <code>$(&quot;&quot;).bind(&quot;事件类型&quot;，function(e)&#123;..&#125;)</code>，e为<strong>事件对象</strong></p>
+</li>
+</ol>
+<h2 id="八、-响应式布局-Bootstrap"><a href="#八、-响应式布局-Bootstrap" class="headerlink" title="八、 响应式布局-Bootstrap"></a>八、 响应式布局-Bootstrap</h2><ol>
+<li><p><strong>布局方式</strong>(宽度): 固定宽度布局(960/980/1190/1210px)、流式布局(屏幕百分比设置相对宽度)、响应式布局(根据设备视觉视口进行不同的布局)<br>设备屏幕尺寸划分: 768/992/1200</p>
+</li>
+<li><p>响应式布局的<strong>实现方式</strong>: </p>
+<ul>
+<li>CSS3中的媒体查询-检查设备宽度，设置CSS样式<br>meta:vp扩展-布局视口=设备视觉视口，不可缩放<br>style&gt;@media screen and (min-width: px){CSS选择器}-媒体查询</li>
+<li>开源框架(Bootstrap)</li>
+</ul>
+</li>
+<li><p><strong>Bootstrap</strong></p>
+<ul>
+<li>概述: 开源、移动优先的前端框架。</li>
+<li>使用: 下载后引用/CDN直接引用-CSS和JS文件<br>引用jQuery: <code>&lt;script src=&quot;https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js&quot;&gt;&lt;/script&gt;</code></li>
+<li>栅格系统: .container&gt;.row&gt;.col-xs/sm/md/lg-12</li>
+</ul>
+</li>
+</ol>
+<h2 id="九、-HTML5"><a href="#九、-HTML5" class="headerlink" title="九、 HTML5"></a>九、 HTML5</h2><ol>
+<li><p><strong>新结构</strong></p>
+<ul>
+<li>旧页面-HTML4标准: div+css</li>
+<li>HTML5-新标签: header/footer/nav/aside/content/section/article…</li>
+</ul>
+</li>
+<li><p><strong>音频视频</strong></p>
+<ul>
+<li>音频 <code>&lt;audio src=&quot;&quot; controls=&quot;controls&quot;&gt;..&lt;/audio&gt;</code></li>
+<li>视频<br><code>&lt;video id=&quot;&quot; width=&quot;&quot;&gt;&lt;source src=&quot;&quot; typy=&quot;video/mp4&quot;/&gt;..&lt;/video&gt;&lt;button onclick=&quot;playPause()&quot;&gt;播放/暂停&lt;/button&gt;</code><br>(用JS定义playPause函数)</li>
+</ul>
+</li>
+<li><p><strong>绘图Canvas</strong>： 用Canvas标签定义画布和设置画布样式(CSS)，用JS准备绘图上下文环境和JS绘图</p>
+</li>
+</ol>
+<h2 id="十、-实战笔记"><a href="#十、-实战笔记" class="headerlink" title="十、 实战笔记"></a>十、 实战笔记</h2><ol>
+<li><p>一般来说，id用于布局，class用于样式。</p>
+</li>
+<li><p><code>margin: 0px auto</code> 指块元素在父元素中水平居中对齐。<br><code>text align: center</code> 指块元素中的内联元素在块元素内部水平居中。也可对父容器设置。</p>
+</li>
+<li><p>内联元素无法设置宽高-<code>display: inline-block</code></p>
+</li>
+<li><p>网页先加载html(img标签-内容图片)，再加载css文件(css背景图片样式-小图标、背景图片)</p>
+</li>
+<li><p>一般步骤: 设置content高和背景颜色，container(可舍去)，设置子层高宽和边框</p>
+</li>
+<li><p>若上下盒子有空隙，可对下盒子清除浮动(<code>overflow: hidden</code>)</p>
+</li>
+<li><p>可引入swiper(轮播图)、animate(动画效果)做网页插件。<br>方法: 先在html中引入本地的对应css/js文件，再加CSS和JS代码。</p>
+</li>
+</ol>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/04/08/Web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%8A%80%E8%83%BD/" rel="tag">技能</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/05/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            计算机组成原理
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/04/07/Python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">Python数据结构与算法</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "pl4JaXjNbs8PqLO9lHTzuHQy-gzGzoHsz",
+    app_key: "mNqyAYwB5OwYsRNSyHavIrKK",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2020
+        <i class="ri-heart-fill heart_icon"></i> 练书菡
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/avatar.gif" alt="半篙波暖遇重逢"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">目录</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/Python/">Python</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%8A%80%E8%83%BD/">技能</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+<script src="/js/dz.js"></script>
+
+
+
+    
+  </div>
+</body>
+
+</html>

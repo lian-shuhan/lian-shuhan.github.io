@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    贝叶斯分类器-机器学习 |  
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/images/avatar.gif" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="半篙波暖遇重逢" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-机器学习7"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  贝叶斯分类器-机器学习
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A07/" class="article-date">
+  <time datetime="2020-03-12T12:04:04.000Z" itemprop="datePublished">2020-03-12</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">1.9k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">7 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="一、-贝叶斯决策论"><a href="#一、-贝叶斯决策论" class="headerlink" title="一、 贝叶斯决策论"></a>一、 贝叶斯决策论</h2><ol>
+<li><p><strong>贝叶斯决策论</strong>: 在所有相关概率都已知的分类任务中，如何基于这些概率和误判损失来选择最优的类别标记。</p>
+<a id="more"></a>
+</li>
+<li><p><strong>后验概率</strong>: P(原因1|结果)，即已知结果(样本特征x)，求该原因发生(样本为c类)的概率。</p>
+</li>
+<li><p>令$\lambda_{i j}$表示将真实标记$c_{j}$的样本误分类为$c_{i}$所产生的损失。样本x分类为$c_{i}$的期望损失即<strong>条件风险</strong>: $R\left(c_{i} | \boldsymbol{x}\right)=\sum_{j=1}^{N} \lambda_{i j} P\left(c_{j} | \boldsymbol{x}\right)$<br><strong>任务</strong>: 寻找判定准则h，以最小化总体风险$R(h)=\mathbb{E}_{\boldsymbol{x}}[R(h(\boldsymbol{x}) | \boldsymbol{x})]$</p>
+</li>
+<li><p><strong>贝叶斯判定准则</strong>: 为最小化总体风险，只需在每新样本上选择能使条件风险$R\left(c | \boldsymbol{x}\right)$最小的类别标记，即<br>$$h^{<em>}(\boldsymbol{x})=\underset{c \in \mathcal{Y}}{\arg \min } R(c | \boldsymbol{x})$$<br>此时$R\left(h^{</em>}\right)$称为贝叶斯风险。<br>最小化分类错误率的贝叶斯最优分类器为:<br>$$h^{*}(\boldsymbol{x})=\underset{c \in \mathcal{Y}}{\arg \max } P(c | \boldsymbol{x})$$<br>(误判损失为0/1值)</p>
+</li>
+<li><p>关键在于基于有限的训练样本集尽可能准确地估计出后验概率$P(c | \boldsymbol{x})$-两种策略: </p>
+<ul>
+<li><strong>判别式模型</strong>: 给定<strong>x</strong>，通过直接建模$P(c | \boldsymbol{x})$来预测c，如决策树、BP神经网络、支持向量机等。</li>
+<li><strong>生成式模型</strong>: 先对联合概率分布P(<strong>x</strong>,c)建模(<strong>大数定律</strong>: 概率估值来源于训练集的频率)，然后再由此获得$P(c | \boldsymbol{x})$，即:<br> $$P(c | \boldsymbol{x})=\frac{P(c) P(\boldsymbol{x} | c)}{P(\boldsymbol{x})}$$</li>
+</ul>
+</li>
+<li><p>假定$P(\boldsymbol{x} | c)$具有确定的形式且被参数向量$\boldsymbol{\theta}_{c}$唯一确定，再基于训练集对参数向量进行估计-两种方法:</p>
+<ul>
+<li><strong>频率主义学派</strong>: 参数有客观存在的固定值，可通过优化似然函数等准则来确定参数值。如: <strong>极大似然估计</strong>(MLE)</li>
+<li><strong>贝叶斯学派</strong>: 参数本身也可有分布，可假定参数服从一个先验分布，然后基于训练集来计算参数的后验分布。</li>
+</ul>
+</li>
+</ol>
+<h2 id="二、-朴素贝叶斯分类器"><a href="#二、-朴素贝叶斯分类器" class="headerlink" title="二、 朴素贝叶斯分类器"></a>二、 朴素贝叶斯分类器</h2><ol start="7">
+<li><p>朴素贝叶斯分类器采用了<strong>属性条件独立性假设</strong>: 对已知类别，假设所有属性相互独立。</p>
+</li>
+<li><p>表达式(贝叶斯判定准则): $h_{n b}(\boldsymbol{x})=\underset{c \in \mathcal{Y}}{\arg \max } P(c) \prod_{i=1}^{d} P\left(x_{i} | c\right)$</p>
+</li>
+<li><p>为了避免其他属性携带的信息被训练集中未出现的属性值抹去，在估计概率值时通常要进行平滑，常用<strong>拉普拉斯修正</strong>:<br>$\begin{aligned} \hat{P}(c) &amp;=\frac{\left|D_{c}\right|+1}{|D|+N} \ \hat{P}\left(x_{i} | c\right) &amp;=\frac{\left|D_{c, x_{i}}\right|+1}{\left|D_{c}\right|+N_{i}} \end{aligned}$</p>
+</li>
+<li><p>若任务对预测速度要求较高，则对给定训练集，可将朴素贝叶斯分类器涉及的所有概率估值事先计算好存储起来，这样在进行预测时只需”查表”即可进行判别。</p>
+</li>
+</ol>
+<h2 id="三、-半朴素贝叶斯分类器"><a href="#三、-半朴素贝叶斯分类器" class="headerlink" title="三、 半朴素贝叶斯分类器"></a>三、 半朴素贝叶斯分类器</h2><ol start="11">
+<li><p><strong>半朴素贝叶斯分类器</strong>: 适当考虑一部分属性间的相互依赖(即相关)信息。<br><strong>独依赖估计</strong>(ODE,最常用): 是假设每个属性在类别之外最多仅依赖于一个其他属性，即$P(c | \boldsymbol{x}) \propto P(c) \prod_{i=1}^{d} P\left(x_{i} | c, p a_{i}\right)$<br>其中$p a_{i}$为属性$x_{i}$所依赖的属性，即父属性(关键是确定每个属性的父属性)</p>
+</li>
+<li><p><strong>确定父属性</strong></p>
+<ul>
+<li><strong>SPODE</strong>: 假设所有属性都依赖于同一属性(超父)，然后通过交叉验证等模型选择方法来确定超父属性。</li>
+<li><strong>TAN</strong>: 在最大带权生成树的基础上，将属性间依赖关系约简为树形结构(仅保留强相关属性间的依赖性)。</li>
+<li><strong>AODE</strong>: 尝试将每个属性作为超父来构建SPODE，然后将其中具有足够训练数据支撑的SPODE集成起来作为最终结果。<br><img src="https://s1.ax1x.com/2020/03/19/8yMSNn.png" alt="8yMSNn.png"></li>
+</ul>
+</li>
+<li><p><strong>kDE</strong>: 考虑属性间的高阶依赖(对多个属性的依赖)-泛化性能提高</p>
+</li>
+</ol>
+<h2 id="四、-贝叶斯网"><a href="#四、-贝叶斯网" class="headerlink" title="四、 贝叶斯网"></a>四、 贝叶斯网</h2><ol start="14">
+<li><p><strong>贝叶斯网</strong>-信念网: 借助有向无环图(DAG)刻画属性之间的依赖关系，并用条件概率表(CPT)描述属性的联合概率分布。<br><strong>结构</strong>: $B=\langle G, \Theta\rangle$，G为有向无环图(树状)，参数$\theta_{x_{i} | \pi_{i}}=P_{B}\left(x_{i} | \pi_{i}\right)$(父结点集为属性$\pi_{i}$)<br>$\Theta$描述属性的依赖关系，包含了每个属性的条件概率表。<br>各属性的<strong>联合概率分布</strong>为$\theta_{x_{i} | \pi_{i}}$之积。<br><img src="https://s1.ax1x.com/2020/03/19/8y8EkQ.png" alt="8y8EkQ.png"><br>V型结构中，若子结点$x_{4}$取值未知，则$x_{1}$与$x_{2}$独立-边际独立性</p>
+</li>
+<li><p>分析条件独立性，可使用<strong>有向分离</strong>($x \perp y | z$，即条件独立)-先将有向图转变为无向图(道德图): </p>
+<ul>
+<li>找出所有V型结构，在两父结点之间加一条无向边(道德化)。</li>
+<li>将所有有向边改为无向边。<br>去除z后，x、y分隔</li>
+</ul>
+</li>
+<li><p><strong>学习</strong>: 根据训练数据集找出结构最恰当的贝叶斯网(最常用方法-评分搜索)，再通过对训练样本计数估计出每个结点的条件概率表。<br><strong>评分搜索</strong>: 定义一个评分函数来评估贝叶斯网与训练数据的契合程度，然后基于该评分函数(值尽可能小)来寻找结构最优的贝叶斯网。<br><strong>信息论准则</strong>: 将学习问题看作一个数据压缩任务，学习目标是找到一个能以最短编码长度描述训练数据的模型，此时编码的长度包括了描述模型自身所需的字节长度和使用该模型描述数据所需的字节长度。<br>常用<strong>评分函数</strong>通常基于信息论准则，选择综合编码长度最短的贝叶斯网(即最小描述长度(MDL)准则)。</p>
+</li>
+<li><p><strong>评分函数可写为</strong>: $s(B | D)=f(\theta)|B|-L L(B | D)$<br>其中|B|是参数个数，$f(\theta)$为表示每个参数$\theta$所需字节数，<strong>x</strong>包含类别和属性，同时B的对数似然为$L L(B | D)=\sum_{i=1}^{m} \log P_{B}\left(\boldsymbol{x}_{i}\right)$<br><strong>AIC</strong>: $f(\theta)=1$； <strong>BIC</strong>: $f(\theta)=\frac{1}{2} \log m$； <strong>极大似然估计</strong>: $f(\theta)=0$<br>快速搜索网格结构的<strong>近似解方法</strong>: 贪心法(从某个结构出发进行调整)；给结构施加约束(如: 限定为树形)</p>
+</li>
+<li><p><strong>推断</strong>(针对一个样本): 通过已知变量观测值(即<strong>证据</strong>)来推测待查询变量(皆包括属性和类别)。<br>最理想: 直接根据贝叶斯网定义的联合概率分布来精确计算后验概率-NP难-借助近似推断(降低精度要求，在有限时间内求得近似解)-<strong>吉布斯采样</strong>(使用马尔科夫链)<br><img src="https://s1.ax1x.com/2020/03/19/8y6mad.png" alt="8y6mad.png"></p>
+</li>
+</ol>
+<h2 id="五、-EM算法"><a href="#五、-EM算法" class="headerlink" title="五、 EM算法"></a>五、 EM算法</h2><ol start="19">
+<li><p>当训练样本某属性变量值(隐变量<strong>Z</strong>)未知时，对模型参数$\Theta$进行估计的方法: 通过对<strong>Z</strong>计算期望，来最大化已观测数据<strong>X</strong>的对数边际似然<br>$$L L(\Theta | \mathbf{X})=\ln P(\mathbf{X} | \Theta)=\ln \sum_{\mathbf{Z}} P(\mathbf{X}, \mathbf{Z} | \Theta)$$</p>
+</li>
+<li><p><strong>EM算法</strong>(估计参数隐变量；迭代): </p>
+<ul>
+<li>期望(E)步: 利用当前估计的参数值来计算对数似然的期望值。</li>
+<li>最大化(M)步: 寻找能使E步产生的似然期望最大化的参数值。然后，新得到的参数值重新被用于E步，直至收敛到局部最优解。</li>
+</ul>
+</li>
+</ol>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/03/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A07/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/03/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A08/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            集成学习-机器学习
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/03/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A06/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">支持向量机-机器学习</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "pl4JaXjNbs8PqLO9lHTzuHQy-gzGzoHsz",
+    app_key: "mNqyAYwB5OwYsRNSyHavIrKK",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2020
+        <i class="ri-heart-fill heart_icon"></i> 练书菡
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/avatar.gif" alt="半篙波暖遇重逢"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">目录</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/Python/">Python</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%8A%80%E8%83%BD/">技能</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+<script src="/js/dz.js"></script>
+
+
+
+    
+  </div>
+</body>
+
+</html>

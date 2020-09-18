@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+
+
+<html lang="zh-CN">
+
+
+<head>
+  <meta charset="utf-8" />
+    
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <title>
+    神经网络-机器学习 |  
+  </title>
+  <meta name="generator" content="hexo-theme-ayer">
+  
+  <link rel="shortcut icon" href="/images/avatar.gif" />
+  
+  
+<link rel="stylesheet" href="/dist/main.css">
+
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/Shen-Yu/cdn/css/remixicon.min.css">
+
+  
+<link rel="stylesheet" href="/css/custom.css">
+
+  
+  
+<script src="https://cdn.jsdelivr.net/npm/pace-js@1.0.2/pace.min.js"></script>
+
+  
+  
+
+  
+
+<link rel="alternate" href="/atom.xml" title="半篙波暖遇重逢" type="application/atom+xml">
+</head>
+
+</html>
+
+<body>
+  <div id="app">
+    
+      
+    <main class="content on">
+      <section class="outer">
+  <article
+  id="post-机器学习5"
+  class="article article-type-post"
+  itemscope
+  itemprop="blogPost"
+  data-scroll-reveal
+>
+  <div class="article-inner">
+    
+    <header class="article-header">
+       
+<h1 class="article-title sea-center" style="border-left:0" itemprop="name">
+  神经网络-机器学习
+</h1>
+ 
+
+    </header>
+     
+    <div class="article-meta">
+      <a href="/2020/03/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A05/" class="article-date">
+  <time datetime="2020-03-03T07:04:20.000Z" itemprop="datePublished">2020-03-03</time>
+</a>   
+<div class="word_count">
+    <span class="post-time">
+        <span class="post-meta-item-icon">
+            <i class="ri-quill-pen-line"></i>
+            <span class="post-meta-item-text"> 字数统计:</span>
+            <span class="post-count">2.1k</span>
+        </span>
+    </span>
+
+    <span class="post-time">
+        &nbsp; | &nbsp;
+        <span class="post-meta-item-icon">
+            <i class="ri-book-open-line"></i>
+            <span class="post-meta-item-text"> 阅读时长≈</span>
+            <span class="post-count">7 分钟</span>
+        </span>
+    </span>
+</div>
+ 
+    </div>
+      
+    <div class="tocbot"></div>
+
+
+
+
+  
+    <div class="article-entry" itemprop="articleBody">
+       
+  <h2 id="一、-神经元模型"><a href="#一、-神经元模型" class="headerlink" title="一、 神经元模型"></a>一、 神经元模型</h2><ol>
+<li><p><strong>M-P神经元模型</strong>: 阈值逻辑单元-有激活函数-功能神经元<br><img src="https://s2.ax1x.com/2020/03/03/3hykiq.png" alt="3hykiq.png"></p>
+<a id="more"></a>
+</li>
+<li><p>** 激活\响应函数**: 阶跃函数(理想)<br> Sigmoid(挤压)函数: $\frac{1}{1+e^{-x}}$</p>
+</li>
+</ol>
+<h2 id="二、-感知机与多层网络"><a href="#二、-感知机与多层网络" class="headerlink" title="二、 感知机与多层网络"></a>二、 感知机与多层网络</h2><ol start="3">
+<li><p><strong>感知机</strong>: 两层神经元(输入层，输出层M-P)</p>
+<ul>
+<li>给定训练集，通过学习得到权重$w_{i}$(阈值$\theta$看做输入值为-1的哑结点对应的权重)</li>
+<li>学习规则-对训练样例(x,y),若感知机输出为$\hat{y}$，则权重调整:<br>$$<br>\begin{aligned}<br>&amp;w_{i} \leftarrow w_{i}+\Delta w_{i}\<br>&amp;\Delta w_{i}=\eta(y-\hat{y}) x_{i}<br>\end{aligned}<br>$$<br>$\eta$为学习率</li>
+<li>只能处理线性可分问题</li>
+</ul>
+</li>
+<li><p><strong>多层前馈神经网络</strong>: 中间有隐含层(有激活函数)<br><strong>神经网络的学习过程</strong>: 根据训练数据来调整神经元之间的连接权(即权重)以及每个功能神经元的阈值。</p>
+</li>
+</ol>
+<h2 id="三、-误差逆传播-BP-算法-反向算法"><a href="#三、-误差逆传播-BP-算法-反向算法" class="headerlink" title="三、 误差逆传播(BP)算法/反向算法"></a>三、 误差逆传播(BP)算法/反向算法</h2><ol start="5">
+<li><p><strong>BP网络</strong>-一般指用BP算法(一种迭代学习算法)训练的多层前馈神经网络。<br><img src="https://s2.ax1x.com/2020/03/04/3oBEVJ.png" alt="3oBEVJ.png"></p>
+<ul>
+<li>m个样本，d个属性，y为$l$维向量，激活函数为Sigmoid函数</li>
+<li>第k个样本的均方误差: $E_{k}=\frac{1}{2} \sum_{j=1}^{l}\left(\hat{y}<em>{j}^{k}-y</em>{j}^{k}\right)^{2}$</li>
+</ul>
+</li>
+<li><p><strong>标准BP算法的推导</strong>: 确定隐层和输出层的权值和阈值(每次更新仅针对训练集中的一个样例)</p>
+<ul>
+<li>在迭代的每一轮采用广义感知机学习规则对参数进行更新估计，即$v \leftarrow v+\Delta v$)</li>
+<li>基于梯度下降策略，以目标的负梯度方向对参数进行调整。</li>
+<li><strong>更新公式</strong>(给定学习率$\eta$，常为0.1):<br>$$<br>\begin{array}{l}<br>\Delta w_{h j}=\eta g_{j} b_{h} \<br>\Delta \theta_{j}=-\eta g_{j} \<br>\Delta v_{i h}=\eta e_{h} x_{i} \<br>\Delta \gamma_{h}=-\eta e_{h}<br>\end{array}<br>$$</li>
+<li>其中输出层神经元的梯度项$g_{j}=-\frac{\partial E_{k}}{\partial \hat{y}<em>{j}^{k}} \cdot \frac{\partial \hat{y}</em>{j}^{k}}{\partial \beta_{j}}=\hat{y}<em>{j}^{k}\left(1-\hat{y}</em>{j}^{k}\right)\left(y_{j}^{k}-\hat{y}<em>{j}^{k}\right)$<br>隐层神经元的梯度项$e</em>{h}=-\frac{\partial E_{k}}{\partial b_{h}} \cdot \frac{\partial b_{h}}{\partial \alpha_{h}}=b_{h}\left(1-b_{h}\right) \sum_{j=1}^{l} w_{h j} g_{j}$</li>
+</ul>
+</li>
+<li><p><strong>BP算法的工作流程</strong>: 一样本传入输入层-产生输出层结果和误差-将误差逆向传播至隐层-计算梯度项-根据更新公式调整连接权和阈值-迭代过程循环进行-达到某停止条件(如训练误差很小)</p>
+</li>
+<li><p><strong>累积BP算法</strong>: 最小化训练集的累积误差$E=\frac{1}{m} \sum_{k=1}^{m} E_{k}$<br>在读取整个训练集一遍后才对参数进行更新。</p>
+</li>
+<li><p>只需一个包含足够多神经元的隐层(个数的确定用试错法调整)，多层前馈网络就能以任意精度逼近任意复杂度的连续函数。</p>
+</li>
+<li><p>BP神经网络常会<strong>过拟合</strong>，解决办法有:</p>
+<ul>
+<li><strong>早停</strong>: 训练集用来计算梯度、更新连接权和阈值，验证集用来估计误差，若训练集误差降低但验证集升高，则停止训练，同时返回具有最小验证集误差的连接权和阈值。</li>
+<li><strong>正则化</strong>: 在误差目标函数中增加一个用于描述网络复杂度的部分(从而使网络输出更加”光滑”)。</li>
+</ul>
+</li>
+</ol>
+<h2 id="四、-全局最小与局部极小"><a href="#四、-全局最小与局部极小" class="headerlink" title="四、 全局最小与局部极小"></a>四、 全局最小与局部极小</h2><ol start="11">
+<li><p>神经网络的训练过程可看作<strong>参数寻优过程</strong>，即在参数空间中，寻找一组最优参数使得误差函数<strong>E</strong>最小。</p>
+</li>
+<li><p>两种最优: <strong>局部极小与全局最小</strong></p>
+<ul>
+<li>局部极小解是参数空间中的某个点，其邻域点的<strong>E</strong>均不小于该点，对应的<strong>E</strong>为误差函数的局部极小值(只需梯度为0且<strong>E</strong>小于邻点)</li>
+<li>全局最小解则是指参数空间中所有点的<strong>E</strong>均不小于该点的误差函数值(最优)。</li>
+</ul>
+</li>
+<li><p><strong>参数寻优方法</strong>-基于梯度的搜索: 从某些初始解出发迭代寻找最优参数值，每次迭代中先计算误差函数在当前点的梯度，然后根据梯度确定搜索方向(如: 梯度下降法-沿负梯度方向)，但会陷入局部极小。<br><strong>解决办法</strong>-接近全局最小(启发式，缺乏理论保障):<br>使用多个初始值不同的神经网络，训练后取其最小误差的参数解；模拟退火；随机梯度下降(计算梯度时加入随机因素);遗传算法</p>
+</li>
+</ol>
+<h2 id="五、-其他常见神经网络"><a href="#五、-其他常见神经网络" class="headerlink" title="五、 其他常见神经网络"></a>五、 其他常见神经网络</h2><ol start="14">
+<li><p><strong>RBF网络</strong>-径向基函数网络-单隐层前馈神经网络-与BP网络类似。使用径向基函数作为隐层神经元激活函数，而输出层则是对隐层神经元输出的线性组合。</p>
+</li>
+<li><p><strong>ART网络</strong>(自适应谐振理论网络)</p>
+<ul>
+<li><strong>竞争性学习</strong>: 一种无监督学习策略。输出神经元相互竞争，每一时刻仅有一个竞争获胜的神经元被激活，其他神经元被抑制。即”胜者通吃”原则。</li>
+<li>该网络由比较层、识别层、识别阈值和重置模块构成。比较层接收输入样本，并将其传递给识别层神经元，识别层每个神经元对应一个模式类(可动态增长)。之后识别层神经元之间相互竞争(输入向量与模式类的代表向量的距离)以产生获胜神经元。若两向量相似度大于识别阈值，则归为该代表向量一类，同时更新连接权以便之后相似样本能产生更大相似度。反之，则重置模块在识别层增设一个神经元，其代表向量设置为当前输入向量。</li>
+<li>有效缓解竞争型学习中的”可塑性-稳定性窘境”，即增量学习和在线学习。</li>
+</ul>
+</li>
+<li><p><strong>SOM网络</strong>(自组织映射网络): 一种竞争学习型的无监督神经网络。能将高维输入数据映射到低维空间(通常为二<br>维)，同时保持输入数据在高维空间的拓扑结构，即将高维空间中相似的样本点映射到输出层中的邻近神经元。</p>
+</li>
+<li><p><strong>级联相关网络</strong>: 一种结构自适应网络。将网络结构当作学习的目标之一，并希望能在训练过程中找到最符合数据特点的网络结构。<br><img src="https://s2.ax1x.com/2020/03/08/3xUpbq.png" alt="3xUpbq.png"></p>
+</li>
+<li><p><strong>Elman网络</strong>: 一种递归神经网络(与前馈对应)。网络中可出现环形结构，从而让一些神经元的输出反馈回来作为输入信号，</p>
+</li>
+<li><p><strong>Boltzmann机</strong>: 一种基于能量的模型。为网络状态定义一个能量，能量最小化时网络达到理想状态，而网络的训练就是在最小化这个能量函数。神经元(布尔型)分为两层:显层与隐层。显层用于表示数据的输入与输出，隐层则被理解为数据的内在表达。</p>
+</li>
+</ol>
+<h2 id="六、-深度学习"><a href="#六、-深度学习" class="headerlink" title="六、 深度学习"></a>六、 深度学习</h2><ol start="20">
+<li><p>典型的<strong>深度学习模型</strong>就是很深层的神经网络-增加隐层数目和每隐层神经元数目-通过多层处理，逐渐将初始的低层特征表示转化为高层特征表示后，用简单模型即可完成复杂的分类等学习任务。<br>节省训练开销的方法: 无监督逐层训练/权共享</p>
+</li>
+<li><p><strong>无监督逐层训练</strong>是多隐层网络训练的有效手段。基本思想是每次训练一层隐结点，将上一层隐结点的输出作为输入，而本层隐结点的输出作为下一层的输入，这称为预训练;在预训练全部完成后，再对整个网络进行微调训练。<br>即将大量参数分组，对每组先找到局部看来比较好的设置，然后再基于这些局部较优的结果联合起来进行全局寻优。</p>
+</li>
+<li><p><strong>权共享</strong>: 让一组神经元使用相同的连接权。</p>
+</li>
+</ol>
+ 
+      <!-- reward -->
+      
+      <div id="reword-out">
+        <div id="reward-btn">
+          打赏
+        </div>
+      </div>
+      
+    </div>
+    
+
+    <!-- copyright -->
+    
+    <div class="declare">
+      <ul class="post-copyright">
+        <li>
+          <i class="ri-copyright-line"></i>
+          <strong>版权声明： </strong>
+          
+          本博客所有文章除特别声明外，著作权归作者所有。转载请注明出处！
+          
+        </li>
+      </ul>
+    </div>
+    
+    <footer class="article-footer">
+       
+<div class="share-btn">
+      <span class="share-sns share-outer">
+        <i class="ri-share-forward-line"></i>
+        分享
+      </span>
+      <div class="share-wrap">
+        <i class="arrow"></i>
+        <div class="share-icons">
+          
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="ri-weibo-fill"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="ri-wechat-fill"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="ri-qq-fill"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="ri-douban-line"></i>
+          </a>
+          <!-- <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a> -->
+          
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="ri-facebook-circle-fill"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="ri-twitter-fill"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="ri-google-fill"></i>
+          </a>
+        </div>
+      </div>
+</div>
+
+<div class="wx-share-modal">
+    <a class="modal-close" href="javascript:;"><i class="ri-close-circle-line"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//api.qrserver.com/v1/create-qr-code/?size=150x150&data=http://yoursite.com/2020/03/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A05/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div id="share-mask"></div>  
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a></li></ul>
+
+    </footer>
+  </div>
+
+   
+  <nav class="article-nav">
+    
+      <a href="/2020/03/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A06/" class="article-nav-link">
+        <strong class="article-nav-caption">上一篇</strong>
+        <div class="article-nav-title">
+          
+            支持向量机-机器学习
+          
+        </div>
+      </a>
+    
+    
+      <a href="/2020/02/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A04/" class="article-nav-link">
+        <strong class="article-nav-caption">下一篇</strong>
+        <div class="article-nav-title">决策树-机器学习</div>
+      </a>
+    
+  </nav>
+
+   
+<!-- valine评论 -->
+<div id="vcomments-box">
+  <div id="vcomments"></div>
+</div>
+<script src="//cdn1.lncld.net/static/js/3.0.4/av-min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/valine@1.4.14/dist/Valine.min.js"></script>
+<script>
+  new Valine({
+    el: "#vcomments",
+    app_id: "pl4JaXjNbs8PqLO9lHTzuHQy-gzGzoHsz",
+    app_key: "mNqyAYwB5OwYsRNSyHavIrKK",
+    path: window.location.pathname,
+    avatar: "monsterid",
+    placeholder: "给我的文章加点评论吧~",
+    recordIP: true,
+  });
+  const infoEle = document.querySelector("#vcomments .info");
+  if (infoEle && infoEle.childNodes && infoEle.childNodes.length > 0) {
+    infoEle.childNodes.forEach(function (item) {
+      item.parentNode.removeChild(item);
+    });
+  }
+</script>
+<style>
+  #vcomments-box {
+    padding: 5px 30px;
+  }
+
+  @media screen and (max-width: 800px) {
+    #vcomments-box {
+      padding: 5px 0px;
+    }
+  }
+
+  #vcomments-box #vcomments {
+    background-color: #fff;
+  }
+
+  .v .vlist .vcard .vh {
+    padding-right: 20px;
+  }
+
+  .v .vlist .vcard {
+    padding-left: 10px;
+  }
+</style>
+
+ 
+     
+</article>
+
+</section>
+      <footer class="footer">
+  <div class="outer">
+    <ul>
+      <li>
+        Copyrights &copy;
+        2019-2020
+        <i class="ri-heart-fill heart_icon"></i> 练书菡
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        
+        由 <a href="https://hexo.io" target="_blank">Hexo</a> 强力驱动
+        <span class="division">|</span>
+        主题 - <a href="https://github.com/Shen-Yu/hexo-theme-ayer" target="_blank">Ayer</a>
+        
+      </li>
+    </ul>
+    <ul>
+      <li>
+        
+        
+        <span>
+  <span><i class="ri-user-3-fill"></i>访问人数:<span id="busuanzi_value_site_uv"></span></s>
+  <span class="division">|</span>
+  <span><i class="ri-eye-fill"></i>浏览次数:<span id="busuanzi_value_page_pv"></span></span>
+</span>
+        
+      </li>
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      
+    </ul>
+    <ul>
+      <li>
+        <!-- cnzz统计 -->
+        
+      </li>
+    </ul>
+  </div>
+</footer>
+      <div class="float_btns">
+        <div class="totop" id="totop">
+  <i class="ri-arrow-up-line"></i>
+</div>
+
+<div class="todark" id="todark">
+  <i class="ri-moon-line"></i>
+</div>
+
+      </div>
+    </main>
+    <aside class="sidebar on">
+      <button class="navbar-toggle"></button>
+<nav class="navbar">
+  
+  <div class="logo">
+    <a href="/"><img src="/images/avatar.gif" alt="半篙波暖遇重逢"></a>
+  </div>
+  
+  <ul class="nav nav-main">
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/">主页</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/archives">目录</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/Python/">Python</a>
+    </li>
+    
+    <li class="nav-item">
+      <a class="nav-item-link" href="/tags/%E6%8A%80%E8%83%BD/">技能</a>
+    </li>
+    
+  </ul>
+</nav>
+<nav class="navbar navbar-bottom">
+  <ul class="nav">
+    <li class="nav-item">
+      
+      <a class="nav-item-link nav-item-search"  title="搜索">
+        <i class="ri-search-line"></i>
+      </a>
+      
+      
+      <a class="nav-item-link" target="_blank" href="/atom.xml" title="RSS Feed">
+        <i class="ri-rss-line"></i>
+      </a>
+      
+    </li>
+  </ul>
+</nav>
+<div class="search-form-wrap">
+  <div class="local-search local-search-plugin">
+  <input type="search" id="local-search-input" class="local-search-input" placeholder="Search...">
+  <div id="local-search-result" class="local-search-result"></div>
+</div>
+</div>
+    </aside>
+    <script>
+      if (window.matchMedia("(max-width: 768px)").matches) {
+        document.querySelector('.content').classList.remove('on');
+        document.querySelector('.sidebar').classList.remove('on');
+      }
+    </script>
+    <div id="mask"></div>
+
+<!-- #reward -->
+<div id="reward">
+  <span class="close"><i class="ri-close-line"></i></span>
+  <p class="reward-p"><i class="ri-cup-line"></i>请我喝杯咖啡吧~</p>
+  <div class="reward-box">
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/alipay.png">
+      <span class="reward-type">支付宝</span>
+    </div>
+    
+    
+    <div class="reward-item">
+      <img class="reward-img" src="/images/wechat.png">
+      <span class="reward-type">微信</span>
+    </div>
+    
+  </div>
+</div>
+    
+<script src="/js/jquery-2.0.3.min.js"></script>
+
+
+<script src="/js/lazyload.min.js"></script>
+
+<!-- Tocbot -->
+
+
+<script src="/js/tocbot.min.js"></script>
+
+<script>
+  tocbot.init({
+    tocSelector: '.tocbot',
+    contentSelector: '.article-entry',
+    headingSelector: 'h1, h2, h3, h4, h5, h6',
+    hasInnerContainers: true,
+    scrollSmooth: true,
+    scrollContainer: 'main',
+    positionFixedSelector: '.tocbot',
+    positionFixedClass: 'is-position-fixed',
+    fixedSidebarOffset: 'auto'
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jquery-modal@0.9.2/jquery.modal.min.css">
+<script src="https://cdn.jsdelivr.net/npm/justifiedGallery@3.7.0/dist/js/jquery.justifiedGallery.min.js"></script>
+
+<script src="/dist/main.js"></script>
+
+<!-- ImageViewer -->
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                <!--  Controls are self-explanatory. Order can be changed. -->
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" style="display:none" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css">
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"></script>
+
+<script>
+    function viewer_init() {
+        let pswpElement = document.querySelectorAll('.pswp')[0];
+        let $imgArr = document.querySelectorAll(('.article-entry img:not(.reward-img)'))
+
+        $imgArr.forEach(($em, i) => {
+            $em.onclick = () => {
+                // slider展开状态
+                // todo: 这样不好，后面改成状态
+                if (document.querySelector('.left-col.show')) return
+                let items = []
+                $imgArr.forEach(($em2, i2) => {
+                    let img = $em2.getAttribute('data-idx', i2)
+                    let src = $em2.getAttribute('data-target') || $em2.getAttribute('src')
+                    let title = $em2.getAttribute('alt')
+                    // 获得原图尺寸
+                    const image = new Image()
+                    image.src = src
+                    items.push({
+                        src: src,
+                        w: image.width || $em2.width,
+                        h: image.height || $em2.height,
+                        title: title
+                    })
+                })
+                var gallery = new PhotoSwipe(pswpElement, PhotoSwipeUI_Default, items, {
+                    index: parseInt(i)
+                });
+                gallery.init()
+            }
+        })
+    }
+    viewer_init()
+</script>
+
+<!-- MathJax -->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+      tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+      }
+  });
+
+  MathJax.Hub.Queue(function() {
+      var all = MathJax.Hub.getAllJax(), i;
+      for(i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/mathjax@2.7.6/unpacked/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+  var ayerConfig = {
+    mathjax: true
+  }
+</script>
+
+<!-- Katex -->
+
+<!-- busuanzi  -->
+
+
+<script src="/js/busuanzi-2.3.pure.min.js"></script>
+
+
+<!-- ClickLove -->
+
+<!-- ClickBoom1 -->
+
+<!-- ClickBoom2 -->
+
+<!-- CodeCopy -->
+
+
+<link rel="stylesheet" href="/css/clipboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js"></script>
+<script>
+  function wait(callback, seconds) {
+    var timelag = null;
+    timelag = window.setTimeout(callback, seconds);
+  }
+  !function (e, t, a) {
+    var initCopyCode = function(){
+      var copyHtml = '';
+      copyHtml += '<button class="btn-copy" data-clipboard-snippet="">';
+      copyHtml += '<i class="ri-file-copy-2-line"></i><span>COPY</span>';
+      copyHtml += '</button>';
+      $(".highlight .code pre").before(copyHtml);
+      $(".article pre code").before(copyHtml);
+      var clipboard = new ClipboardJS('.btn-copy', {
+        target: function(trigger) {
+          return trigger.nextElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        let $btn = $(e.trigger);
+        $btn.addClass('copied');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-checkbox-circle-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPIED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-checkbox-circle-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+      clipboard.on('error', function(e) {
+        e.clearSelection();
+        let $btn = $(e.trigger);
+        $btn.addClass('copy-failed');
+        let $icon = $($btn.find('i'));
+        $icon.removeClass('ri-file-copy-2-line');
+        $icon.addClass('ri-time-line');
+        let $span = $($btn.find('span'));
+        $span[0].innerText = 'COPY FAILED';
+        
+        wait(function () { // 等待两秒钟后恢复
+          $icon.removeClass('ri-time-line');
+          $icon.addClass('ri-file-copy-2-line');
+          $span[0].innerText = 'COPY';
+        }, 2000);
+      });
+    }
+    initCopyCode();
+  }(window, document);
+</script>
+
+
+<!-- CanvasBackground -->
+
+
+<script src="/js/dz.js"></script>
+
+
+
+    
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>半篙波暖遇重逢</title>
+  
+  
+  <link href="http://yoursite.com/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2020-09-18T10:56:36.886Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>练书菡</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="http://yoursite.com/2020/09/18/hello-world/"/>
+    <id>http://yoursite.com/2020/09/18/hello-world/</id>
+    <published>2020-09-18T10:56:36.886Z</published>
+    <updated>2020-09-18T10:56:36.886Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
+        
+      
+    
+    
+    
+    
+  </entry>
+  
+  <entry>
+    <title>计算机组成原理</title>
+    <link href="http://yoursite.com/2020/05/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"/>
+    <id>http://yoursite.com/2020/05/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</id>
+    <published>2020-05-26T08:38:50.000Z</published>
+    <updated>2020-05-26T08:44:12.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;a</summary>
+        
+      
+    
+    
+    
+    
+    <category term="技能" scheme="http://yoursite.com/tags/%E6%8A%80%E8%83%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Web前端开发基础</title>
+    <link href="http://yoursite.com/2020/04/08/Web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/"/>
+    <id>http://yoursite.com/2020/04/08/Web%E5%89%8D%E7%AB%AF%E5%BC%80%E5%8F%91/</id>
+    <published>2020-04-08T06:53:24.000Z</published>
+    <updated>2020-09-18T13:03:35.349Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、-概论&quot;&gt;&lt;a href=&quot;#一、-概论&quot; class=&quot;headerlink&quot; title=&quot;一、 概论&quot;&gt;&lt;/a&gt;一、 概论&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;Web-Web系统；前端-网页上为用户呈现的部分；开发-编写代码。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="技能" scheme="http://yoursite.com/tags/%E6%8A%80%E8%83%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python数据结构与算法</title>
+    <link href="http://yoursite.com/2020/04/07/Python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/"/>
+    <id>http://yoursite.com/2020/04/07/Python%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/</id>
+    <published>2020-04-07T07:07:25.000Z</published>
+    <updated>2020-04-27T13:56:02.000Z</updated>
+    
+    
+      
+      
+        
+        
+    <summary type="html">&lt;h2 id=&quot;一、-算法分析&quot;&gt;&lt;a href=&quot;#一、-算法分析&quot; class=&quot;headerlink&quot; title=&quot;一、 算法分析&quot;&gt;&lt;/a&gt;一、</summary>
+        
+      
+    
+    
+    
+    
+    <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python爬虫</title>
+    <link href="http://yoursite.com/2020/03/29/Python2/"/>
+    <id>http://yoursite.com/2020/03/29/Python2/</id>
+    <published>2020-03-29T13:28:51.000Z</published>
+    <updated>2020-04-27T13:54:56.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、-Requests&quot;&gt;&lt;a href=&quot;#一、-Requests&quot; class=&quot;headerlink&quot; title=&quot;一、 Requests&quot;&gt;&lt;/a&gt;一、 Requests&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;自动爬取HTML页面，自动网络请求提交&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;安装库&lt;/strong&gt;&lt;/p&gt;
+&lt;pre&gt;pip install requests
+&lt;/pre&gt;</summary>
+    
+    
+    
+    
+    <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>降维与度量学习-机器学习</title>
+    <link href="http://yoursite.com/2020/03/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A010/"/>
+    <id>http://yoursite.com/2020/03/29/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A010/</id>
+    <published>2020-03-29T08:19:43.000Z</published>
+    <updated>2020-04-07T12:51:58.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、-k近邻学习&quot;&gt;&lt;a href=&quot;#一、-k近邻学习&quot; class=&quot;headerlink&quot; title=&quot;一、 k近邻学习&quot;&gt;&lt;/a&gt;一、 k近邻学习&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;</summary>
+    
+    
+    
+    
+    <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>美式英语发音规则</title>
+    <link href="http://yoursite.com/2020/03/25/%E7%BE%8E%E5%BC%8F%E8%8B%B1%E8%AF%AD%E5%8F%91%E9%9F%B3%E8%A7%84%E5%88%99/"/>
+    <id>http://yoursite.com/2020/03/25/%E7%BE%8E%E5%BC%8F%E8%8B%B1%E8%AF%AD%E5%8F%91%E9%9F%B3%E8%A7%84%E5%88%99/</id>
+    <published>2020-03-25T08:18:54.000Z</published>
+    <updated>2020-03-25T09:34:26.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、-辅-元-连读&quot;&gt;&lt;a href=&quot;#一、-辅-元-连读&quot; class=&quot;headerlink&quot; title=&quot;一、 辅 + 元 连读&quot;&gt;&lt;/a&gt;一、 辅 + 元 连读&lt;/h2&gt;&lt;p&gt;特例: /r/、/l/、/ŋ/重复&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="技能" scheme="http://yoursite.com/tags/%E6%8A%80%E8%83%BD/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>聚类-机器学习</title>
+    <link href="http://yoursite.com/2020/03/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A09/"/>
+    <id>http://yoursite.com/2020/03/24/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A09/</id>
+    <published>2020-03-24T12:02:48.000Z</published>
+    <updated>2020-03-29T08:18:12.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、-聚类任务&quot;&gt;&lt;a href=&quot;#一、-聚类任务&quot; class=&quot;headerlink&quot; title=&quot;一、 聚类任务&quot;&gt;&lt;/a&gt;一、 聚类任务&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;聚类&lt;/strong&gt;: 应用最广的一种&lt;strong&gt;无监督学习&lt;/strong&gt;(训练样本的标记信息未知)-将样本划分为若干个不相交的簇$\lambda$(类)&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>集成学习-机器学习</title>
+    <link href="http://yoursite.com/2020/03/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A08/"/>
+    <id>http://yoursite.com/2020/03/19/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A08/</id>
+    <published>2020-03-19T13:48:10.000Z</published>
+    <updated>2020-03-24T12:01:18.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、-个体与集成&quot;&gt;&lt;a href=&quot;#一、-个体与集成&quot; class=&quot;headerlink&quot; title=&quot;一、 个体与集成&quot;&gt;&lt;/a&gt;一、 个体与集成&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;集成学习&lt;/strong&gt;: 通过构建并结合多个学习器来完成学习任务。先产生一组个体学习器，再用某种策略将它们结合起来。&lt;br&gt;同质集成(同种类型)的个体学习器亦称&lt;strong&gt;基学习器&lt;/strong&gt;(多为弱学习器), 相应的学习算法称为基学习算法。&lt;br&gt;异质集成的个体学习器称为&lt;strong&gt;组件学习器&lt;/strong&gt;或直接称为个体学习器。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>贝叶斯分类器-机器学习</title>
+    <link href="http://yoursite.com/2020/03/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A07/"/>
+    <id>http://yoursite.com/2020/03/12/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A07/</id>
+    <published>2020-03-12T12:04:04.000Z</published>
+    <updated>2020-03-23T12:34:42.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、-贝叶斯决策论&quot;&gt;&lt;a href=&quot;#一、-贝叶斯决策论&quot; class=&quot;headerlink&quot; title=&quot;一、 贝叶斯决策论&quot;&gt;&lt;/a&gt;一、 贝叶斯决策论&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;贝叶斯决策论&lt;/strong&gt;: 在所有相关概率都已知的分类任务中，如何基于这些概率和误判损失来选择最优的类别标记。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>支持向量机-机器学习</title>
+    <link href="http://yoursite.com/2020/03/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A06/"/>
+    <id>http://yoursite.com/2020/03/08/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A06/</id>
+    <published>2020-03-08T07:59:31.000Z</published>
+    <updated>2020-03-12T13:56:10.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、间隔与支持向量&quot;&gt;&lt;a href=&quot;#一、间隔与支持向量&quot; class=&quot;headerlink&quot; title=&quot;一、间隔与支持向量&quot;&gt;&lt;/a&gt;一、间隔与支持向量&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;分类学习最基本的想法是在样本空间中找到一个&lt;strong&gt;划分超平面&lt;/strong&gt;，将不同类别的样本分开。(位于不同类样本正中间的划分超平面，泛化能力最强)&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>神经网络-机器学习</title>
+    <link href="http://yoursite.com/2020/03/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A05/"/>
+    <id>http://yoursite.com/2020/03/03/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A05/</id>
+    <published>2020-03-03T07:04:20.000Z</published>
+    <updated>2020-03-08T07:56:58.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、-神经元模型&quot;&gt;&lt;a href=&quot;#一、-神经元模型&quot; class=&quot;headerlink&quot; title=&quot;一、 神经元模型&quot;&gt;&lt;/a&gt;一、 神经元模型&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;M-P神经元模型&lt;/strong&gt;: 阈值逻辑单元-有激活函数-功能神经元&lt;br&gt;&lt;img src=&quot;https://s2.ax1x.com/2020/03/03/3hykiq.png&quot; alt=&quot;3hykiq.png&quot;&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>决策树-机器学习</title>
+    <link href="http://yoursite.com/2020/02/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A04/"/>
+    <id>http://yoursite.com/2020/02/26/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A04/</id>
+    <published>2020-02-26T10:41:55.000Z</published>
+    <updated>2020-03-03T07:29:54.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、-基本流程&quot;&gt;&lt;a href=&quot;#一、-基本流程&quot; class=&quot;headerlink&quot; title=&quot;一、 基本流程&quot;&gt;&lt;/a&gt;一、 基本流程&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;根节点(样本全集)-内部节点(属性测试)-叶节点(决策结果)&lt;br&gt;&lt;strong&gt;决策树桩&lt;/strong&gt;: 仅有一层划分的决策树。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;决策树学习基本算法&lt;/strong&gt;&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>线性模型-机器学习</title>
+    <link href="http://yoursite.com/2020/02/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A03/"/>
+    <id>http://yoursite.com/2020/02/25/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A03/</id>
+    <published>2020-02-25T05:27:00.000Z</published>
+    <updated>2020-02-25T08:11:02.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、-线性回归&quot;&gt;&lt;a href=&quot;#一、-线性回归&quot; class=&quot;headerlink&quot; title=&quot;一、 线性回归&quot;&gt;&lt;/a&gt;一、 线性回归&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;输入离散属性: 存在”序”关系-**连续化 **；不存在”序”关系-转化为k维向量。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;回归中最常用的性能度量: &lt;strong&gt;均方误差&lt;/strong&gt;-欧氏距离-最小二乘”参数估计”-求偏导等于0-最优解的闭式解（解析解）&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>模型评估与选择-机器学习</title>
+    <link href="http://yoursite.com/2020/02/17/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A02/"/>
+    <id>http://yoursite.com/2020/02/17/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A02/</id>
+    <published>2020-02-17T03:43:39.000Z</published>
+    <updated>2020-02-25T05:25:26.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、-经验误差与过拟合&quot;&gt;&lt;a href=&quot;#一、-经验误差与过拟合&quot; class=&quot;headerlink&quot; title=&quot;一、 经验误差与过拟合&quot;&gt;&lt;/a&gt;一、 经验误差与过拟合&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;错误率&lt;/strong&gt;: 分类错误的样本数占样本总数的比例。&lt;/p&gt;
+&lt;p&gt; &lt;strong&gt;精度&lt;/strong&gt; = 1-错误率&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>绪论-机器学习</title>
+    <link href="http://yoursite.com/2020/02/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A01/"/>
+    <id>http://yoursite.com/2020/02/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A01/</id>
+    <published>2020-02-11T07:49:06.000Z</published>
+    <updated>2020-02-16T06:48:48.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、-基本术语&quot;&gt;&lt;a href=&quot;#一、-基本术语&quot; class=&quot;headerlink&quot; title=&quot;一、 基本术语&quot;&gt;&lt;/a&gt;一、 基本术语&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;若欲预测的是离散值，此类学习任务称为”&lt;strong&gt;分类&lt;/strong&gt;“; 若欲预测的是连续值，此类学习任务称为”&lt;strong&gt;回归&lt;/strong&gt;“。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;学得模型后，使用其进行预测的过程称为”&lt;strong&gt;测试&lt;/strong&gt;“。&lt;/p&gt;</summary>
+    
+    
+    
+    
+    <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Python基础</title>
+    <link href="http://yoursite.com/2020/02/03/Python1/"/>
+    <id>http://yoursite.com/2020/02/03/Python1/</id>
+    <published>2020-02-03T13:49:26.000Z</published>
+    <updated>2020-04-27T13:54:46.000Z</updated>
+    
+    
+    <summary type="html">&lt;h2 id=&quot;一、-简介&quot;&gt;&lt;a href=&quot;#一、-简介&quot; class=&quot;headerlink&quot; title=&quot;一、 简介&quot;&gt;&lt;/a&gt;一、 简介&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Python解释器&lt;/strong&gt;: CPython&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Python交互模式&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;进入&lt;/strong&gt;: Python - - - - &lt;strong&gt;退出&lt;/strong&gt;: exit()   &lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;运行文件&lt;/strong&gt;: &lt;code&gt;python hello.py&lt;/code&gt;(需在当前目录)</summary>
+    
+    
+    
+    
+    <category term="Python" scheme="http://yoursite.com/tags/Python/"/>
+    
+  </entry>
+  
+</feed>
