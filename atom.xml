@@ -6,7 +6,7 @@
   <link href="http://yoursite.com/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2020-09-18T10:56:36.886Z</updated>
+  <updated>2020-09-18T13:03:35.349Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,50 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>Hello World</title>
-    <link href="http://yoursite.com/2020/09/18/hello-world/"/>
-    <id>http://yoursite.com/2020/09/18/hello-world/</id>
-    <published>2020-09-18T10:56:36.886Z</published>
-    <updated>2020-09-18T10:56:36.886Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt;</summary>
-        
-      
-    
-    
-    
-    
-  </entry>
-  
-  <entry>
-    <title>计算机组成原理</title>
-    <link href="http://yoursite.com/2020/05/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/"/>
-    <id>http://yoursite.com/2020/05/26/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86/</id>
-    <published>2020-05-26T08:38:50.000Z</published>
-    <updated>2020-05-26T08:44:12.000Z</updated>
-    
-    
-      
-      
-        
-        
-    <summary type="html">&lt;a</summary>
-        
-      
-    
-    
-    
-    
-    <category term="技能" scheme="http://yoursite.com/tags/%E6%8A%80%E8%83%BD/"/>
-    
-  </entry>
   
   <entry>
     <title>Web前端开发基础</title>
