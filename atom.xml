@@ -67,9 +67,8 @@
     
     <summary type="html">&lt;h2 id=&quot;一、-Requests&quot;&gt;&lt;a href=&quot;#一、-Requests&quot; class=&quot;headerlink&quot; title=&quot;一、 Requests&quot;&gt;&lt;/a&gt;一、 Requests&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;自动爬取HTML页面，自动网络请求提交&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;安装库&lt;/strong&gt;&lt;/p&gt;
-&lt;pre&gt;pip install requests
-&lt;/pre&gt;</summary>
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;安装库&lt;/strong&gt;&lt;br&gt;&lt;pre&gt;pip install requests
+&lt;/pre&gt; &lt;/p&gt;</summary>
     
     
     
@@ -104,7 +103,7 @@
     <updated>2020-03-25T09:34:26.000Z</updated>
     
     
-    <summary type="html">&lt;h2 id=&quot;一、-辅-元-连读&quot;&gt;&lt;a href=&quot;#一、-辅-元-连读&quot; class=&quot;headerlink&quot; title=&quot;一、 辅 + 元 连读&quot;&gt;&lt;/a&gt;一、 辅 + 元 连读&lt;/h2&gt;&lt;p&gt;特例: /r/、/l/、/ŋ/重复&lt;/p&gt;</summary>
+    <summary type="html">&lt;h2 id=&quot;一、-辅-元-连读&quot;&gt;&lt;a href=&quot;#一、-辅-元-连读&quot; class=&quot;headerlink&quot; title=&quot;一、 辅 + 元 连读&quot;&gt;&lt;/a&gt;一、 辅 + 元 连读&lt;/h2&gt;&lt;p&gt;特例: /r/、/l/、/ŋ/重复&lt;br&gt;</summary>
     
     
     
@@ -232,7 +231,7 @@
     
     
     <summary type="html">&lt;h2 id=&quot;一、-线性回归&quot;&gt;&lt;a href=&quot;#一、-线性回归&quot; class=&quot;headerlink&quot; title=&quot;一、 线性回归&quot;&gt;&lt;/a&gt;一、 线性回归&lt;/h2&gt;&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;输入离散属性: 存在”序”关系-**连续化 **；不存在”序”关系-转化为k维向量。&lt;/p&gt;
+&lt;li&gt;&lt;p&gt;输入离散属性: 存在”序”关系-&lt;strong&gt;连续化 &lt;/strong&gt;；不存在”序”关系-转化为k维向量。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;&lt;p&gt;回归中最常用的性能度量: &lt;strong&gt;均方误差&lt;/strong&gt;-欧氏距离-最小二乘”参数估计”-求偏导等于0-最优解的闭式解（解析解）&lt;/p&gt;</summary>
     

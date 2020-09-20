@@ -100,22 +100,36 @@
 <a id="more"></a>
 <p>划分超平面: $\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b=0$</p>
 </li>
-<li><p>若超平面能正确分类，则有<br>$$<br>\left{\begin{array}{ll}<br>\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}<em>{i}+b \geqslant+1, &amp; y</em>{i}=+1 \<br>\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}<em>{i}+b \leqslant-1, &amp; y</em>{i}=-1<br>\end{array}\right.<br>$$<br><strong>支持向量</strong>: 距离超平面最近的满足上式子的几个训练样本点。<br><strong>间隔</strong>: 两个异类支持向量到超平面的距离之和，即$\gamma=\frac{2}{|\boldsymbol{w}|}$</p>
+<li><p>若超平面能正确分类，则有</p>
+<script type="math/tex; mode=display">
+\left\{\begin{array}{ll}
+\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b \geqslant+1, & y_{i}=+1 \\
+\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b \leqslant-1, & y_{i}=-1
+\end{array}\right.</script><p><strong>支持向量</strong>: 距离超平面最近的满足上式子的几个训练样本点。<br><strong>间隔</strong>: 两个异类支持向量到超平面的距离之和，即$\gamma=\frac{2}{|\boldsymbol{w}|}$</p>
 </li>
 <li><p><strong>支持向量机(SVM)的基本型</strong>(即求解$\boldsymbol{w}$、<strong>b</strong>，从而找到具有最大间隔的划分超平面)：</p>
-<p>$$<br>\begin{aligned}<br>&amp;\max <em>{\boldsymbol{w}, b} \frac{2}{|\boldsymbol{w}|}\<br>&amp;\text { s.t. } y</em>{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) \geqslant 1, \quad i=1,2, \ldots, m<br>\end{aligned}<br>$$  </p>
-</li>
+<script type="math/tex; mode=display">
+\begin{aligned}
+&\max _{\boldsymbol{w}, b} \frac{2}{\|\boldsymbol{w}\|}\\
+&\text { s.t. } y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) \geqslant 1, \quad i=1,2, \ldots, m
+\end{aligned}</script></li>
 </ol>
 <h2 id="二、-对偶问题"><a href="#二、-对偶问题" class="headerlink" title="二、 对偶问题"></a>二、 对偶问题</h2><p>对于SVM的基本型:<br>拉格朗日函数为 $L(\boldsymbol{w}, b, \boldsymbol{\alpha})=\frac{1}{2}|\boldsymbol{w}|^{2}+\sum_{i=1}^{m} \alpha_{i}\left(1-y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)\right)$</p>
 <p>令其偏导为零，可得: </p>
-<p>$$\begin{aligned} \boldsymbol{w} &amp;=\sum_{i=1}^{m} \alpha_{i} y_{i} \boldsymbol{x}<em>{i} \ 0 &amp;=\sum</em>{i=1}^{m} \alpha_{i} y_{i} \end{aligned}$$<br>代进$L(\boldsymbol{w}, b, \boldsymbol{\alpha})$，可得到<strong>对偶问题</strong>:<br>$$\max <em>{\boldsymbol{\alpha}} \sum</em>{i=1}^{m} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{m} \sum_{j=1}^{m} \alpha_{i} \alpha_{j} y_{i} y_{j} \boldsymbol{x}<em>{i}^{\mathrm{T}} \boldsymbol{x}</em>{j}$$<br>s.t. $\sum_{i=1}^{m} \alpha_{i} y_{i}=0$<br>$\alpha_{i} \geqslant 0, \quad i=1,2, \ldots, m$<br>解出$\boldsymbol{\alpha}$后，求出$\boldsymbol{w}$与b即可。</p>
-<p>同时上述过程需满足基本型的约束，即<strong>KKT</strong>(Karush-Kuhn-Tucker)条件:<br>$$\left{\begin{array}{l}<br>\alpha_{i} \geqslant 0 \<br>y_{i} f\left(\boldsymbol{x}<em>{i}\right)-1 \geqslant 0 \<br>\alpha</em>{i}\left(y_{i} f\left(\boldsymbol{x}_{i}\right)-1\right)=0<br>\end{array}\right.$$<br>(可直接从不等式约束优化理解)<br>即: 最终模型仅与支持向量有关</p>
+<script type="math/tex; mode=display">\begin{aligned} \boldsymbol{w} &=\sum_{i=1}^{m} \alpha_{i} y_{i} \boldsymbol{x}_{i} \\ 0 &=\sum_{i=1}^{m} \alpha_{i} y_{i} \end{aligned}</script><p>代进$L(\boldsymbol{w}, b, \boldsymbol{\alpha})$，可得到<strong>对偶问题</strong>:</p>
+<script type="math/tex; mode=display">\max _{\boldsymbol{\alpha}} \sum_{i=1}^{m} \alpha_{i}-\frac{1}{2} \sum_{i=1}^{m} \sum_{j=1}^{m} \alpha_{i} \alpha_{j} y_{i} y_{j} \boldsymbol{x}_{i}^{\mathrm{T}} \boldsymbol{x}_{j}</script><p>s.t. $\sum_{i=1}^{m} \alpha_{i} y_{i}=0$<br>$\alpha_{i} \geqslant 0, \quad i=1,2, \ldots, m$<br>解出$\boldsymbol{\alpha}$后，求出$\boldsymbol{w}$与b即可。</p>
+<p>同时上述过程需满足基本型的约束，即<strong>KKT</strong>(Karush-Kuhn-Tucker)条件:</p>
+<script type="math/tex; mode=display">\left\{\begin{array}{l}
+\alpha_{i} \geqslant 0 \\
+y_{i} f\left(\boldsymbol{x}_{i}\right)-1 \geqslant 0 \\
+\alpha_{i}\left(y_{i} f\left(\boldsymbol{x}_{i}\right)-1\right)=0
+\end{array}\right.</script><p>(可直接从不等式约束优化理解)<br>即: 最终模型仅与支持向量有关</p>
 <p>求解对偶问题(二次规划)的算法: <strong>SMO</strong></p>
 <h2 id="三、-核函数"><a href="#三、-核函数" class="headerlink" title="三、 核函数"></a>三、 核函数</h2><ol>
 <li><p>训练样本不是线性可分的-将样本$x$从原始空间<strong>映射</strong>到一个更高维的特征空间(映射后的特征向量为$\phi(\boldsymbol{x})$)，使其在此特征空间内线性可分(有限维定存在)。</p>
 </li>
-<li><p>求解对偶问题时，引入<strong>核函数</strong>(设想): $\kappa\left(\boldsymbol{x}<em>{i}, \boldsymbol{x}</em>{j}\right)=\left\langle\phi\left(\boldsymbol{x}<em>{i}\right), \phi\left(\boldsymbol{x}</em>{j}\right)\right\rangle=\phi\left(\boldsymbol{x}<em>{i}\right)^{\mathrm{T}} \phi\left(\boldsymbol{x}</em>{j}\right)$<br>解得(<strong>支持向量展式</strong>):<br>$$\begin{aligned} f(\boldsymbol{x}) &amp;=\boldsymbol{w}^{\mathrm{T}} \phi(\boldsymbol{x})+b \ &amp;=\sum_{i=1}^{m} \alpha_{i} y_{i} \phi\left(\boldsymbol{x}<em>{i}\right)^{\mathrm{T}} \phi(\boldsymbol{x})+b \ &amp;=\sum</em>{i=1}^{m} \alpha_{i} y_{i} \kappa\left(\boldsymbol{x}, \boldsymbol{x}_{i}\right)+b \end{aligned}$$</p>
-</li>
+<li><p>求解对偶问题时，引入<strong>核函数</strong>(设想): $\kappa\left(\boldsymbol{x}_{i}, \boldsymbol{x}_{j}\right)=\left\langle\phi\left(\boldsymbol{x}_{i}\right), \phi\left(\boldsymbol{x}_{j}\right)\right\rangle=\phi\left(\boldsymbol{x}_{i}\right)^{\mathrm{T}} \phi\left(\boldsymbol{x}_{j}\right)$<br>解得(<strong>支持向量展式</strong>):</p>
+<script type="math/tex; mode=display">\begin{aligned} f(\boldsymbol{x}) &=\boldsymbol{w}^{\mathrm{T}} \phi(\boldsymbol{x})+b \\ &=\sum_{i=1}^{m} \alpha_{i} y_{i} \phi\left(\boldsymbol{x}_{i}\right)^{\mathrm{T}} \phi(\boldsymbol{x})+b \\ &=\sum_{i=1}^{m} \alpha_{i} y_{i} \kappa\left(\boldsymbol{x}, \boldsymbol{x}_{i}\right)+b \end{aligned}</script></li>
 <li><p>只要一个对称函数所对应的核矩阵半正定，它就能作为核函数使用。事实上，对于一个半正定核矩阵，总能找到一个与之对应的映射$\phi(\boldsymbol{x})$。换言之，任何一个核函数都隐式地定义了一个称为再生核希尔伯特空间(RKHS)的特征空间。</p>
 </li>
 <li><p>SVM性能关键因素: <strong>核函数选择</strong>(线性核、多项式核、高斯核、拉普拉斯核、Sigmoid核等)。</p>
@@ -124,17 +138,24 @@
 <h2 id="四、-软间隔与正则化"><a href="#四、-软间隔与正则化" class="headerlink" title="四、 软间隔与正则化"></a>四、 软间隔与正则化</h2><ol>
 <li><p>很难确定合适的核函数使得训练样本在特征空间中线性可分/很难识别过拟合-允许支持向量机在一些样本上出错,即<strong>软间隔</strong>。</p>
 </li>
-<li><p>优化目标可写为:<br>$$\min <em>{\boldsymbol{w}, b} \frac{1}{2}|\boldsymbol{w}|^{2}+C \sum</em>{i=1}^{m} \ell\left(y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)-1\right)$$<br>其中$\ell$为(替代)<strong>损失函数</strong>(hinge/指数/对数损失)。</p>
+<li><p>优化目标可写为: </p>
+<script type="math/tex; mode=display">\min _{\boldsymbol{w}, b} \frac{1}{2}\|\boldsymbol{w}\|^{2}+C \sum_{i=1}^{m} \ell\left(y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right)-1\right)</script><p>其中$\ell$为(替代)<strong>损失函数</strong>(hinge/指数/对数损失)。</p>
 </li>
-<li><p><strong>软间隔支持向量机</strong>(常见): 采用hinge损失($\ell_{\text {hinge}}(z)=\max (0,1-z)$),同时引入松弛变量$\xi_{i} \geqslant 0$，优化问题为:<br>$$\min <em>{\boldsymbol{w}, b, \boldsymbol{\xi}</em>{i}} \frac{1}{2}|\boldsymbol{w}|^{2}+C \sum_{i=1}^{m} \xi_{i}$$<br>$$\begin{aligned}<br>&amp;\text { s.t. } \quad y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}<em>{i}+b\right) \geqslant 1-\xi</em>{i}\<br>&amp;\xi_{i} \geqslant 0, i=1,2, \dots, m<br>\end{aligned}$$<br>(仍是二次规划问题，通过拉格朗日乘子法化为对偶问题后求解，最终模型仍仅与支持向量有关)</p>
+<li><p><strong>软间隔支持向量机</strong>(常见): 采用hinge损失($\ell_{\text {hinge}}(z)=\max (0,1-z)$),同时引入松弛变量$\xi_{i} \geqslant 0$，优化问题为:</p>
+<script type="math/tex; mode=display">\min _{\boldsymbol{w}, b, \boldsymbol{\xi}_{i}} \frac{1}{2}\|\boldsymbol{w}\|^{2}+C \sum_{i=1}^{m} \xi_{i}</script><script type="math/tex; mode=display">\begin{aligned}
+&\text { s.t. } \quad y_{i}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}_{i}+b\right) \geqslant 1-\xi_{i}\\
+&\xi_{i} \geqslant 0, i=1,2, \dots, m
+\end{aligned}</script><p>(仍是二次规划问题，通过拉格朗日乘子法化为对偶问题后求解，最终模型仍仅与支持向量有关)</p>
 </li>
-<li><p>优化问题的一般形式，即<strong>正则化问题</strong>:<br>$$\min <em>{f} \Omega(f)+C \sum</em>{i=1}^{m} \ell\left(f\left(\boldsymbol{x}<em>{i}\right), y</em>{i}\right)$$<br>第一项为<strong>结构风险</strong>，用于描述模型的某些性质，表述了我们希望获得具有何种性质的模型；同时该项有助于削减假设空间，从而降低了最小化训练误差的过拟合风险，因此又称为正则化项(折中项C为正则化系数，常用$\mathbf{L}_{p}$范数)。<br>第二项(不包括C)为<strong>经验风险</strong>，用于描述模型与训练数据的契合程度。</p>
+<li><p>优化问题的一般形式，即<strong>正则化问题</strong>: </p>
+<script type="math/tex; mode=display">\min _{f} \Omega(f)+C \sum_{i=1}^{m} \ell\left(f\left(\boldsymbol{x}_{i}\right), y_{i}\right)</script><p>第一项为<strong>结构风险</strong>，用于描述模型的某些性质，表述了我们希望获得具有何种性质的模型；同时该项有助于削减假设空间，从而降低了最小化训练误差的过拟合风险，因此又称为正则化项(折中项C为正则化系数，常用$\mathbf{L}_{p}$范数)。<br>第二项(不包括C)为<strong>经验风险</strong>，用于描述模型与训练数据的契合程度。</p>
 </li>
 </ol>
 <h2 id="五、-支持向量回归"><a href="#五、-支持向量回归" class="headerlink" title="五、 支持向量回归"></a>五、 支持向量回归</h2><ol>
 <li><p>支持向量回归(<strong>SVR</strong>)仅当f(x)与y之间的差别绝对值大于$\epsilon$时才计算损失，即容忍二者之间有一定偏差。<br><img src="https://s1.ax1x.com/2020/03/12/8mSbY4.png" alt="8mSbY4.png"></p>
 </li>
-<li><p>SVR问题可形式化为: $\min <em>{\boldsymbol{w}, b} \frac{1}{2}|\boldsymbol{w}|^{2}+C \sum</em>{i=1}^{m} \ell_{\epsilon}\left(f\left(\boldsymbol{x}<em>{i}\right)-y</em>{i}\right)$<br>$\ell_{\epsilon}$为$\epsilon$-不敏感损失函数。<br>类似的，通过拉格朗日乘子法化为对偶问题后求解，解得:<br>$$f(\boldsymbol{x})=\sum_{i=1}^{m}\left(\hat{\alpha}<em>{i}-\alpha</em>{i}\right) \kappa\left(\boldsymbol{x}, \boldsymbol{x}_{i}\right)+b$$<br>其中的$\alpha$为拉格朗日乘子。</p>
+<li><p>SVR问题可形式化为: $\min _{\boldsymbol{w}, b} \frac{1}{2}|\boldsymbol{w}|^{2}+C \sum_{i=1}^{m} \ell_{\epsilon}\left(f\left(\boldsymbol{x}_{i}\right)-y_{i}\right)$<br>$\ell_{\epsilon}$为$\epsilon$-不敏感损失函数。<br>类似的，通过拉格朗日乘子法化为对偶问题后求解，解得:</p>
+<script type="math/tex; mode=display">f(\boldsymbol{x})=\sum_{i=1}^{m}\left(\hat{\alpha}_{i}-\alpha_{i}\right) \kappa\left(\boldsymbol{x}, \boldsymbol{x}_{i}\right)+b</script><p>其中的$\alpha$为拉格朗日乘子。</p>
 </li>
 </ol>
 <h2 id="六、-核方法"><a href="#六、-核方法" class="headerlink" title="六、 核方法"></a>六、 核方法</h2><ol>

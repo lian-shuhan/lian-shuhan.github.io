@@ -103,12 +103,14 @@
 </li>
 <li><p>令$\lambda_{i j}$表示将真实标记$c_{j}$的样本误分类为$c_{i}$所产生的损失。样本x分类为$c_{i}$的期望损失即<strong>条件风险</strong>: $R\left(c_{i} | \boldsymbol{x}\right)=\sum_{j=1}^{N} \lambda_{i j} P\left(c_{j} | \boldsymbol{x}\right)$<br><strong>任务</strong>: 寻找判定准则h，以最小化总体风险$R(h)=\mathbb{E}_{\boldsymbol{x}}[R(h(\boldsymbol{x}) | \boldsymbol{x})]$</p>
 </li>
-<li><p><strong>贝叶斯判定准则</strong>: 为最小化总体风险，只需在每新样本上选择能使条件风险$R\left(c | \boldsymbol{x}\right)$最小的类别标记，即<br>$$h^{<em>}(\boldsymbol{x})=\underset{c \in \mathcal{Y}}{\arg \min } R(c | \boldsymbol{x})$$<br>此时$R\left(h^{</em>}\right)$称为贝叶斯风险。<br>最小化分类错误率的贝叶斯最优分类器为:<br>$$h^{*}(\boldsymbol{x})=\underset{c \in \mathcal{Y}}{\arg \max } P(c | \boldsymbol{x})$$<br>(误判损失为0/1值)</p>
+<li><p><strong>贝叶斯判定准则</strong>: 为最小化总体风险，只需在每新样本上选择能使条件风险$R\left(c | \boldsymbol{x}\right)$最小的类别标记，即</p>
+<script type="math/tex; mode=display">h^{*}(\boldsymbol{x})=\underset{c \in \mathcal{Y}}{\arg \min } R(c | \boldsymbol{x})</script><p>此时$R\left(h^{*}\right)$称为贝叶斯风险。<br>最小化分类错误率的贝叶斯最优分类器为: </p>
+<script type="math/tex; mode=display">h^{*}(\boldsymbol{x})=\underset{c \in \mathcal{Y}}{\arg \max } P(c | \boldsymbol{x})</script><p>(误判损失为0/1值)</p>
 </li>
 <li><p>关键在于基于有限的训练样本集尽可能准确地估计出后验概率$P(c | \boldsymbol{x})$-两种策略: </p>
 <ul>
 <li><strong>判别式模型</strong>: 给定<strong>x</strong>，通过直接建模$P(c | \boldsymbol{x})$来预测c，如决策树、BP神经网络、支持向量机等。</li>
-<li><strong>生成式模型</strong>: 先对联合概率分布P(<strong>x</strong>,c)建模(<strong>大数定律</strong>: 概率估值来源于训练集的频率)，然后再由此获得$P(c | \boldsymbol{x})$，即:<br> $$P(c | \boldsymbol{x})=\frac{P(c) P(\boldsymbol{x} | c)}{P(\boldsymbol{x})}$$</li>
+<li><strong>生成式模型</strong>: 先对联合概率分布P(<strong>x</strong>,c)建模(<strong>大数定律</strong>: 概率估值来源于训练集的频率)，然后再由此获得$P(c | \boldsymbol{x})$，即:<script type="math/tex; mode=display">P(c | \boldsymbol{x})=\frac{P(c) P(\boldsymbol{x} | c)}{P(\boldsymbol{x})}</script></li>
 </ul>
 </li>
 <li><p>假定$P(\boldsymbol{x} | c)$具有确定的形式且被参数向量$\boldsymbol{\theta}_{c}$唯一确定，再基于训练集对参数向量进行估计-两种方法:</p>
@@ -118,17 +120,17 @@
 </ul>
 </li>
 </ol>
-<h2 id="二、-朴素贝叶斯分类器"><a href="#二、-朴素贝叶斯分类器" class="headerlink" title="二、 朴素贝叶斯分类器"></a>二、 朴素贝叶斯分类器</h2><ol start="7">
+<h2 id="二、-朴素贝叶斯分类器"><a href="#二、-朴素贝叶斯分类器" class="headerlink" title="二、 朴素贝叶斯分类器"></a>二、 朴素贝叶斯分类器</h2><ol>
 <li><p>朴素贝叶斯分类器采用了<strong>属性条件独立性假设</strong>: 对已知类别，假设所有属性相互独立。</p>
 </li>
 <li><p>表达式(贝叶斯判定准则): $h_{n b}(\boldsymbol{x})=\underset{c \in \mathcal{Y}}{\arg \max } P(c) \prod_{i=1}^{d} P\left(x_{i} | c\right)$</p>
 </li>
-<li><p>为了避免其他属性携带的信息被训练集中未出现的属性值抹去，在估计概率值时通常要进行平滑，常用<strong>拉普拉斯修正</strong>:<br>$\begin{aligned} \hat{P}(c) &amp;=\frac{\left|D_{c}\right|+1}{|D|+N} \ \hat{P}\left(x_{i} | c\right) &amp;=\frac{\left|D_{c, x_{i}}\right|+1}{\left|D_{c}\right|+N_{i}} \end{aligned}$</p>
+<li><p>为了避免其他属性携带的信息被训练集中未出现的属性值抹去，在估计概率值时通常要进行平滑，常用<strong>拉普拉斯修正</strong>:<br>$\begin{aligned} \hat{P}(c) &amp;=\frac{\left|D_{c}\right|+1}{|D|+N} \\ \hat{P}\left(x_{i} | c\right) &amp;=\frac{\left|D_{c, x_{i}}\right|+1}{\left|D_{c}\right|+N_{i}} \end{aligned}$</p>
 </li>
 <li><p>若任务对预测速度要求较高，则对给定训练集，可将朴素贝叶斯分类器涉及的所有概率估值事先计算好存储起来，这样在进行预测时只需”查表”即可进行判别。</p>
 </li>
 </ol>
-<h2 id="三、-半朴素贝叶斯分类器"><a href="#三、-半朴素贝叶斯分类器" class="headerlink" title="三、 半朴素贝叶斯分类器"></a>三、 半朴素贝叶斯分类器</h2><ol start="11">
+<h2 id="三、-半朴素贝叶斯分类器"><a href="#三、-半朴素贝叶斯分类器" class="headerlink" title="三、 半朴素贝叶斯分类器"></a>三、 半朴素贝叶斯分类器</h2><ol>
 <li><p><strong>半朴素贝叶斯分类器</strong>: 适当考虑一部分属性间的相互依赖(即相关)信息。<br><strong>独依赖估计</strong>(ODE,最常用): 是假设每个属性在类别之外最多仅依赖于一个其他属性，即$P(c | \boldsymbol{x}) \propto P(c) \prod_{i=1}^{d} P\left(x_{i} | c, p a_{i}\right)$<br>其中$p a_{i}$为属性$x_{i}$所依赖的属性，即父属性(关键是确定每个属性的父属性)</p>
 </li>
 <li><p><strong>确定父属性</strong></p>
@@ -141,7 +143,7 @@
 <li><p><strong>kDE</strong>: 考虑属性间的高阶依赖(对多个属性的依赖)-泛化性能提高</p>
 </li>
 </ol>
-<h2 id="四、-贝叶斯网"><a href="#四、-贝叶斯网" class="headerlink" title="四、 贝叶斯网"></a>四、 贝叶斯网</h2><ol start="14">
+<h2 id="四、-贝叶斯网"><a href="#四、-贝叶斯网" class="headerlink" title="四、 贝叶斯网"></a>四、 贝叶斯网</h2><ol>
 <li><p><strong>贝叶斯网</strong>-信念网: 借助有向无环图(DAG)刻画属性之间的依赖关系，并用条件概率表(CPT)描述属性的联合概率分布。<br><strong>结构</strong>: $B=\langle G, \Theta\rangle$，G为有向无环图(树状)，参数$\theta_{x_{i} | \pi_{i}}=P_{B}\left(x_{i} | \pi_{i}\right)$(父结点集为属性$\pi_{i}$)<br>$\Theta$描述属性的依赖关系，包含了每个属性的条件概率表。<br>各属性的<strong>联合概率分布</strong>为$\theta_{x_{i} | \pi_{i}}$之积。<br><img src="https://s1.ax1x.com/2020/03/19/8y8EkQ.png" alt="8y8EkQ.png"><br>V型结构中，若子结点$x_{4}$取值未知，则$x_{1}$与$x_{2}$独立-边际独立性</p>
 </li>
 <li><p>分析条件独立性，可使用<strong>有向分离</strong>($x \perp y | z$，即条件独立)-先将有向图转变为无向图(道德图): </p>
@@ -157,9 +159,9 @@
 <li><p><strong>推断</strong>(针对一个样本): 通过已知变量观测值(即<strong>证据</strong>)来推测待查询变量(皆包括属性和类别)。<br>最理想: 直接根据贝叶斯网定义的联合概率分布来精确计算后验概率-NP难-借助近似推断(降低精度要求，在有限时间内求得近似解)-<strong>吉布斯采样</strong>(使用马尔科夫链)<br><img src="https://s1.ax1x.com/2020/03/19/8y6mad.png" alt="8y6mad.png"></p>
 </li>
 </ol>
-<h2 id="五、-EM算法"><a href="#五、-EM算法" class="headerlink" title="五、 EM算法"></a>五、 EM算法</h2><ol start="19">
-<li><p>当训练样本某属性变量值(隐变量<strong>Z</strong>)未知时，对模型参数$\Theta$进行估计的方法: 通过对<strong>Z</strong>计算期望，来最大化已观测数据<strong>X</strong>的对数边际似然<br>$$L L(\Theta | \mathbf{X})=\ln P(\mathbf{X} | \Theta)=\ln \sum_{\mathbf{Z}} P(\mathbf{X}, \mathbf{Z} | \Theta)$$</p>
-</li>
+<h2 id="五、-EM算法"><a href="#五、-EM算法" class="headerlink" title="五、 EM算法"></a>五、 EM算法</h2><ol>
+<li><p>当训练样本某属性变量值(隐变量<strong>Z</strong>)未知时，对模型参数$\Theta$进行估计的方法: 通过对<strong>Z</strong>计算期望，来最大化已观测数据<strong>X</strong>的对数边际似然</p>
+<script type="math/tex; mode=display">L L(\Theta | \mathbf{X})=\ln P(\mathbf{X} | \Theta)=\ln \sum_{\mathbf{Z}} P(\mathbf{X}, \mathbf{Z} | \Theta)</script></li>
 <li><p><strong>EM算法</strong>(估计参数隐变量；迭代): </p>
 <ul>
 <li>期望(E)步: 利用当前估计的参数值来计算对数似然的期望值。</li>

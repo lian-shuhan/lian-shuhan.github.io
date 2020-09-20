@@ -71,7 +71,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-quill-pen-line"></i>
             <span class="post-meta-item-text"> 字数统计:</span>
-            <span class="post-count">1.6k</span>
+            <span class="post-count">529</span>
         </span>
     </span>
 
@@ -80,7 +80,7 @@
         <span class="post-meta-item-icon">
             <i class="ri-book-open-line"></i>
             <span class="post-meta-item-text"> 阅读时长≈</span>
-            <span class="post-count">6 分钟</span>
+            <span class="post-count">2 分钟</span>
         </span>
     </span>
 </div>
@@ -111,12 +111,22 @@
 <h2 id="二、Boosting"><a href="#二、Boosting" class="headerlink" title="二、Boosting"></a>二、Boosting</h2><ol>
 <li><p><strong>Boosting族算法</strong>: 先从训练集训练出一个基学习器，再根据基学习器的表现对训练样本分布进行调整，使得先前基学习器做错的训练样本在后续受到更多关注，然后基于调整后的样本分布来训练下一个基学习器；如此重复进行，直至基学习器数目达到事先指定的值T，最终将这T个基学习器进行加权结合。</p>
 </li>
-<li><p><strong>AdaBoost算法</strong>: 基学习器的线性组合$H(\boldsymbol{x})=\sum_{t=1}^{T} \alpha_{t} h_{t}(\boldsymbol{x})$，来最小化指数损失函数(基于加性模型的推导):<br>$\ell_{\exp }(H | \mathcal{D})=\mathbb{E}_{\boldsymbol{x} \sim \mathcal{D}}\left[e^{-f(\boldsymbol{x}) H(\boldsymbol{x})}\right]$,其中f是真实函数，y取+1或-1。<br>令其对$H(\boldsymbol{x})$的偏导为0，有:<br>$$H(x)=\frac{1}{2} \ln \frac{P(f(x)=1 | x)}{P(f(x)=-1 | x)}$$<br>从而<br>$$\begin{aligned}<br>\operatorname{sign}(H(x)) &amp;=\operatorname{sign}\left(\frac{1}{2} \ln \frac{P(f(x)=1 | x)}{P(f(x)=-1 | x)}\right) \<br>&amp;=\left{\begin{array}{ll}<br>1, &amp; P(f(x)=1 | x)&gt;P(f(x)=-1 | x) \</p>
+<li><p><strong>AdaBoost算法</strong>: 基学习器的线性组合$H(\boldsymbol{x})=\sum_{t=1}^{T} \alpha_{t} h_{t}(\boldsymbol{x})$，来最小化指数损失函数(基于加性模型的推导):<br>$\ell_{\exp }(H | \mathcal{D})=\mathbb{E}_{\boldsymbol{x} \sim \mathcal{D}}\left[e^{-f(\boldsymbol{x}) H(\boldsymbol{x})}\right]$,其中f是真实函数，y取+1或-1。<br>令其对$H(\boldsymbol{x})$的偏导为0，有:</p>
+<script type="math/tex; mode=display">H(x)=\frac{1}{2} \ln \frac{P(f(x)=1 | x)}{P(f(x)=-1 | x)}</script><p>从而</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\operatorname{sign}(H(x)) &=\operatorname{sign}\left(\frac{1}{2} \ln \frac{P(f(x)=1 | x)}{P(f(x)=-1 | x)}\right) \\
+&=\left\{\begin{array}{ll}
+1, & P(f(x)=1 | x)>P(f(x)=-1 | x) \\
+-1, & P(f(x)=1 | x)<P(f(x)=-1 | x)
+\end{array}\right.\\
+&=\underset{y \in\{-1,1\}}{\arg \max } P(f(x)=y | x)
+\end{aligned}</script><p>意味着sign(<strong>H</strong>(<strong>x</strong>))达到了贝叶斯最优错误率。即若指数损失函数最小化，则分类错误率也将最小化，从而可用其替代0/1损失函数作为优化目标。</p>
 </li>
 </ol>
-<p>-1, &amp; P(f(x)=1 | x)&lt;P(f(x)=-1 | x)<br>\end{array}\right.\<br>&amp;=\underset{y \in{-1,1}}{\arg \max } P(f(x)=y | x)<br>\end{aligned}$$<br>意味着sign(<strong>H</strong>(<strong>x</strong>))达到了贝叶斯最优错误率。即若指数损失函数最小化，则分类错误率也将最小化，从而可用其替代0/1损失函数作为优化目标。</p>
-<p>基于初始数据分布得到$h_{1}$后，迭代生成$h_{t}$和权重$\alpha_{t}$，且权重应使得$\alpha_{t}h_{t}$最小化指数损失函数<br>$$\ell_{\exp }\left(\alpha_{t} h_{t} | \mathcal{D}<em>{t}\right)=\mathbb{E}</em>{\boldsymbol{x} \sim \mathcal{D}<em>{t}}\left[e^{-f(\boldsymbol{x}) \alpha</em>{t} h_{t}(\boldsymbol{x})}\right]$$<br>$$=e^{-\alpha_{t}}\left(1-\epsilon_{t}\right)+e^{\alpha_{t}} \epsilon_{t}$$<br>其中$\epsilon_{t}=P_{x \sim D_{t}}\left(h_{t}(\boldsymbol{x}) \neq f(\boldsymbol{x})\right)$<br>取其偏导为0，可得下图第6行的分类器权重更新公式。</p>
-<p>AdaBoost算法在获得$H_{t-1}$之后样本分布将进行调整，使下一轮的$h_{t}能纠正一些错误。即最小化<br>$$\ell_{\exp }\left(H_{t-1}+h_{t} | \mathcal{D}\right)=\mathbb{E}<em>{\boldsymbol{x} \sim \mathcal{D}}\left[e^{-f(\boldsymbol{x})\left(H</em>{t-1}(\boldsymbol{x})+h_{t}(\boldsymbol{x})\right)}\right]$$<br>解得$h_{t}(\boldsymbol{x})=\underset{h}{\arg \min } \mathbb{E}<em>{\boldsymbol{x} \sim \mathcal{D}</em>{t}}[\mathbb{I}(f(\boldsymbol{x}) \neq h(\boldsymbol{x}))]$<br>即理想的$h_{t}$将最小化分类误差。<br><img src="https://s1.ax1x.com/2020/03/23/8HEjiV.png" alt="8HEjiV.png">****<br>从偏差-方差分解的角度看，Boosting主要关注降低偏差，因此Boosting能基于泛化性能相当弱的学习器构建出很强的集成。</p>
+<p>基于初始数据分布得到$h_{1}$后，迭代生成$h_{t}$和权重$\alpha_{t}$，且权重应使得$\alpha_{t}h_{t}$最小化指数损失函数</p>
+<script type="math/tex; mode=display">\ell_{\exp }\left(\alpha_{t} h_{t} | \mathcal{D}_{t}\right)=\mathbb{E}_{\boldsymbol{x} \sim \mathcal{D}_{t}}\left[e^{-f(\boldsymbol{x}) \alpha_{t} h_{t}(\boldsymbol{x})}\right]</script><script type="math/tex; mode=display">=e^{-\alpha_{t}}\left(1-\epsilon_{t}\right)+e^{\alpha_{t}} \epsilon_{t}</script><p>其中$\epsilon_{t}=P_{x \sim D_{t}}\left(h_{t}(\boldsymbol{x}) \neq f(\boldsymbol{x})\right)$<br>取其偏导为0，可得下图第6行的分类器权重更新公式。</p>
+<p>AdaBoost算法在获得$H_{t-1}$之后样本分布将进行调整，使下一轮的$h_{t}能纠正一些错误。即最小化</p>
+<script type="math/tex; mode=display">\ell_{\exp }\left(H_{t-1}+h_{t} | \mathcal{D}\right)=\mathbb{E}_{\boldsymbol{x} \sim \mathcal{D}}\left[e^{-f(\boldsymbol{x})\left(H_{t-1}(\boldsymbol{x})+h_{t}(\boldsymbol{x})\right)}\right]</script><p>解得$h_{t}(\boldsymbol{x})=\underset{h}{\arg \min } \mathbb{E}_{\boldsymbol{x} \sim \mathcal{D}_{t}}[\mathbb{I}(f(\boldsymbol{x}) \neq h(\boldsymbol{x}))]$<br>即理想的$h_{t}$将最小化分类误差。<br><img src="https://s1.ax1x.com/2020/03/23/8HEjiV.png" alt="8HEjiV.png"><em>**</em><br>从偏差-方差分解的角度看，Boosting主要关注降低偏差，因此Boosting能基于泛化性能相当弱的学习器构建出很强的集成。</p>
 <h2 id="三、-Bagging与随机森林"><a href="#三、-Bagging与随机森林" class="headerlink" title="三、 Bagging与随机森林"></a>三、 Bagging与随机森林</h2><ol>
 <li><p>Bagging的<strong>基本流程</strong>: 基于自助采样法，采样出T个含m个训练样本的采样集，然后基于每个采样集训练出基学习器，再使用简单投票法/平均法将基学习器进行结合。</p>
 </li>
@@ -140,7 +150,8 @@
 </li>
 </ol>
 <h2 id="五、-多样性"><a href="#五、-多样性" class="headerlink" title="五、 多样性"></a>五、 多样性</h2><ol>
-<li><p><strong>误差一分歧分解</strong>(回归学习)<br>$$E=\bar{E}-\bar{A}$$<br>(集成的泛化误差 = 个体学习器泛化误差的加权均值 - 个体学习器的加权分歧值)<br>即: 个体学习器准确性越高、多样性越大，则集成越好。</p>
+<li><p><strong>误差一分歧分解</strong>(回归学习)</p>
+<script type="math/tex; mode=display">E=\bar{E}-\bar{A}</script><p>(集成的泛化误差 = 个体学习器泛化误差的加权均值 - 个体学习器的加权分歧值)<br>即: 个体学习器准确性越高、多样性越大，则集成越好。</p>
 </li>
 <li><p><strong>多样性度量</strong>-个体分类器的多样性-不合度量/相关系数/Q-统计量/$\kappa$-统计量<br>$\kappa$<strong>-误差图</strong>: 将每一对分类器作为图上的一点，横坐标是这对分类器的$\kappa$值(多样性)，纵坐标是它们的平均误差(准确性)。</p>
 </li>

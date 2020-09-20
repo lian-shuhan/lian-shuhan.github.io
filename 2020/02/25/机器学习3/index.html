@@ -96,7 +96,7 @@
     <div class="article-entry" itemprop="articleBody">
        
   <h2 id="一、-线性回归"><a href="#一、-线性回归" class="headerlink" title="一、 线性回归"></a>一、 线性回归</h2><ol>
-<li><p>输入离散属性: 存在”序”关系-**连续化 **；不存在”序”关系-转化为k维向量。</p>
+<li><p>输入离散属性: 存在”序”关系-<strong>连续化 </strong>；不存在”序”关系-转化为k维向量。</p>
 </li>
 <li><p>回归中最常用的性能度量: <strong>均方误差</strong>-欧氏距离-最小二乘”参数估计”-求偏导等于0-最优解的闭式解（解析解）</p>
 <a id="more"></a>
@@ -105,28 +105,36 @@
 <li>多元: $E_{\hat{w}}=(\boldsymbol{y}-\mathbf{X} \hat{\boldsymbol{w}})^{\mathrm{T}}(\boldsymbol{y}-\mathbf{X} \hat{\boldsymbol{w}})$，其中$\hat{\boldsymbol{w}}=(\boldsymbol{w} ; b)$，<strong>X</strong>加上值=1的最后一列。</li>
 </ul>
 </li>
-<li><p>广义线性函数-联系函数g()-g()=ln()时，为<strong>对数线性回归模型</strong>-参数估计: 加权最小二乘法/极大似然法<br>$$<br>y=g^{-1}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b\right)<br>$$</p>
-</li>
+<li><p>广义线性函数-联系函数g()-g()=ln()时，为<strong>对数线性回归模型</strong>-参数估计: 加权最小二乘法/极大似然法</p>
+<script type="math/tex; mode=display">
+y=g^{-1}\left(\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b\right)</script></li>
 </ol>
-<h2 id="二、-对数几率回归"><a href="#二、-对数几率回归" class="headerlink" title="二、 对数几率回归"></a>二、 对数几率回归</h2><ol start="4">
+<h2 id="二、-对数几率回归"><a href="#二、-对数几率回归" class="headerlink" title="二、 对数几率回归"></a>二、 对数几率回归</h2><ol>
 <li><p><strong>分类任务</strong>(二分类): 找一个单调可微函数g，将分类任务的真实标记y与线性回归模型的预测值相联系。</p>
 </li>
 <li><p><strong>对数几率函数</strong>: $y=\frac{1}{1+e^{-z}}$<br>对数几率: $\ln \frac{y}{1-y}=\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}+b$ （将y视为样本x作为正例的可能性）</p>
 </li>
-<li><p>确定w和b: 将y视为类后验概率估计$p(y=1 | \boldsymbol{x})$(已知类别后，属于该类的概率)，用极大似然法:<br>$$<br>\ell(\boldsymbol{w}, b)=\sum_{i=1}^{m} \ln p\left(y_{i} | \boldsymbol{x}_{i} ; \boldsymbol{w}, b\right)<br>$$<br>将似然项以0/1概率拆分为通用形式后，再用凸优化理论或数值优化算法求其最优解。</p>
+<li><p>确定w和b: 将y视为类后验概率估计$p(y=1 | \boldsymbol{x})$(已知类别后，属于该类的概率)，用极大似然法:</p>
+<script type="math/tex; mode=display">
+\ell(\boldsymbol{w}, b)=\sum_{i=1}^{m} \ln p\left(y_{i} | \boldsymbol{x}_{i} ; \boldsymbol{w}, b\right)</script><p>将似然项以0/1概率拆分为通用形式后，再用凸优化理论或数值优化算法求其最优解。</p>
 </li>
 </ol>
-<h2 id="三、-线性判别分析"><a href="#三、-线性判别分析" class="headerlink" title="三、 线性判别分析"></a>三、 线性判别分析</h2><ol start="7">
+<h2 id="三、-线性判别分析"><a href="#三、-线性判别分析" class="headerlink" title="三、 线性判别分析"></a>三、 线性判别分析</h2><ol>
 <li><p><strong>线性判别分析</strong>(LDA)，亦称Fisher判别分析: 将训练样例投影到一条直线（多维）上，使同类的投影点尽可能接近、异类的远离;对新样本分类时，将其投影到同样的直线上，根据投影点的位置来确定其类别。</p>
 </li>
-<li><p><strong>最大化目标</strong>（二分类）: 类中心距离（大）/同类的投影点的协方差(小)，设直线为$y=\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}$，均值向量$\mu_{i}$，协方差矩阵$\mathbf{\Sigma}<em>{i}$，$i \in{0,1}$（类别），即<br>$$<br>\begin{aligned}<br>J &amp;=\frac{\left|\boldsymbol{w}^{\mathrm{T}} \boldsymbol{\mu}</em>{0}-\boldsymbol{w}^{\mathrm{T}} \boldsymbol{\mu}<em>{1}\right|</em>{2}^{2}}{\boldsymbol{w}^{\mathrm{T}} \boldsymbol{\Sigma}<em>{0} \boldsymbol{w}+\boldsymbol{w}^{\mathrm{T}} \boldsymbol{\Sigma}</em>{1} \boldsymbol{w}} \<br>&amp;=\frac{\boldsymbol{w}^{\mathrm{T}}\left(\boldsymbol{\mu}<em>{0}-\boldsymbol{\mu}</em>{1}\right)\left(\boldsymbol{\mu}<em>{0}-\boldsymbol{\mu}</em>{1}\right)^{\mathrm{T}} \boldsymbol{w}}{\boldsymbol{w}^{\mathrm{T}}\left(\boldsymbol{\Sigma}<em>{0}+\boldsymbol{\Sigma}</em>{1}\right) \boldsymbol{w}}<br>\end{aligned}<br>$$<br>定义类内散度矩阵$\mathbf{S}<em>{w}$，类间散度矩阵$\mathbf{S}</em>{b}$，则$J=\frac{\boldsymbol{w}^{\mathrm{T}} \mathbf{S}<em>{b} \boldsymbol{w}}{\boldsymbol{w}^{\mathrm{T}} \mathbf{S}</em>{w} \boldsymbol{w}}$，LDA最大化的目标即是二者的广义瑞利商。<br>确定$\boldsymbol{w}$: 令分母为1（解与$\boldsymbol{w}$长度无关），用拉格朗日乘子法求解（$\mathbf{S}<em>{b} \boldsymbol{w}$方向恒为$\mu</em>{0}-\mu_{1}$）。</p>
+<li><p><strong>最大化目标</strong>（二分类）: 类中心距离（大）/同类的投影点的协方差(小)，设直线为$y=\boldsymbol{w}^{\mathrm{T}} \boldsymbol{x}$，均值向量$\mu_{i}$，协方差矩阵$\mathbf{\Sigma}_{i}$，$i \in\{0,1\}$（类别），即</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+J &=\frac{\left\|\boldsymbol{w}^{\mathrm{T}} \boldsymbol{\mu}_{0}-\boldsymbol{w}^{\mathrm{T}} \boldsymbol{\mu}_{1}\right\|_{2}^{2}}{\boldsymbol{w}^{\mathrm{T}} \boldsymbol{\Sigma}_{0} \boldsymbol{w}+\boldsymbol{w}^{\mathrm{T}} \boldsymbol{\Sigma}_{1} \boldsymbol{w}} \\
+&=\frac{\boldsymbol{w}^{\mathrm{T}}\left(\boldsymbol{\mu}_{0}-\boldsymbol{\mu}_{1}\right)\left(\boldsymbol{\mu}_{0}-\boldsymbol{\mu}_{1}\right)^{\mathrm{T}} \boldsymbol{w}}{\boldsymbol{w}^{\mathrm{T}}\left(\boldsymbol{\Sigma}_{0}+\boldsymbol{\Sigma}_{1}\right) \boldsymbol{w}}
+\end{aligned}</script><p>定义类内散度矩阵$\mathbf{S}_{w}$，类间散度矩阵$\mathbf{S}_{b}$，则$J=\frac{\boldsymbol{w}^{\mathrm{T}} \mathbf{S}_{b} \boldsymbol{w}}{\boldsymbol{w}^{\mathrm{T}} \mathbf{S}_{w} \boldsymbol{w}}$，LDA最大化的目标即是二者的广义瑞利商。<br>确定$\boldsymbol{w}$: 令分母为1（解与$\boldsymbol{w}$长度无关），用拉格朗日乘子法求解（$\mathbf{S}_{b} \boldsymbol{w}$方向恒为$\mu_{0}-\mu_{1}$）。</p>
 </li>
 <li><p>当两类数据同先验、满足高斯分布且协方差相等时，LDA可达到最优分类。</p>
 </li>
 <li><p>多分类LDA-监督降维。</p>
 </li>
 </ol>
-<h2 id="四、-多分类学习"><a href="#四、-多分类学习" class="headerlink" title="四、 多分类学习"></a>四、 多分类学习</h2><ol start="11">
+<h2 id="四、-多分类学习"><a href="#四、-多分类学习" class="headerlink" title="四、 多分类学习"></a>四、 多分类学习</h2><ol>
 <li><p><strong>拆解法</strong>: 先对多分类任务进行拆分，然后为拆出的每个二分类任务训练一个分类器，最后在测试时将预测结果进行集成。<br>本节介绍拆分策略:一对一，一对其余，多对多。</p>
 </li>
 <li><p><strong>一对一</strong>(OvO): 将多类别两两配对(重复)训练分类器，测试时将新样本提交给所有分类器，最后通过投票产生最终分类结果。</p>
@@ -136,7 +144,7 @@
 <li><p><strong>多对多</strong>(MvM): 每次将若干个类作为正类，若干个其他类作为反类。<br>正反类构造: 纠错输出码(ECOC)</p>
 </li>
 </ol>
-<h2 id="五、-类别不平衡问题"><a href="#五、-类别不平衡问题" class="headerlink" title="五、 类别不平衡问题"></a>五、 类别不平衡问题</h2><ol start="15">
+<h2 id="五、-类别不平衡问题"><a href="#五、-类别不平衡问题" class="headerlink" title="五、 类别不平衡问题"></a>五、 类别不平衡问题</h2><ol>
 <li><p><strong>类别不平衡</strong>: 不同类别的训练样例数目差别很大。本节假设正例少，反例多。</p>
 </li>
 <li><p>线性分类器-<strong>再缩放</strong>:<br>新样本的正例与反例可能性之比值(分类器预测几率): $\frac{y^{\prime}}{1-y^{\prime}}=\frac{y}{1-y} \times \frac{m^{-}}{m^{+}}$,其中$m^{+}$为训练集中正例数目，$m^{-}$为反例数目。<br>最终: 分类器预测几率高于观测几率(缩放前为0.5)，即判定为正例。</p>

@@ -99,33 +99,43 @@
 <li><p><strong>M-P神经元模型</strong>: 阈值逻辑单元-有激活函数-功能神经元<br><img src="https://s2.ax1x.com/2020/03/03/3hykiq.png" alt="3hykiq.png"></p>
 <a id="more"></a>
 </li>
-<li><p>** 激活\响应函数**: 阶跃函数(理想)<br> Sigmoid(挤压)函数: $\frac{1}{1+e^{-x}}$</p>
+<li><p><strong> 激活\响应函数</strong>: 阶跃函数(理想)<br> Sigmoid(挤压)函数: $\frac{1}{1+e^{-x}}$</p>
 </li>
 </ol>
-<h2 id="二、-感知机与多层网络"><a href="#二、-感知机与多层网络" class="headerlink" title="二、 感知机与多层网络"></a>二、 感知机与多层网络</h2><ol start="3">
+<h2 id="二、-感知机与多层网络"><a href="#二、-感知机与多层网络" class="headerlink" title="二、 感知机与多层网络"></a>二、 感知机与多层网络</h2><ol>
 <li><p><strong>感知机</strong>: 两层神经元(输入层，输出层M-P)</p>
 <ul>
 <li>给定训练集，通过学习得到权重$w_{i}$(阈值$\theta$看做输入值为-1的哑结点对应的权重)</li>
-<li>学习规则-对训练样例(x,y),若感知机输出为$\hat{y}$，则权重调整:<br>$$<br>\begin{aligned}<br>&amp;w_{i} \leftarrow w_{i}+\Delta w_{i}\<br>&amp;\Delta w_{i}=\eta(y-\hat{y}) x_{i}<br>\end{aligned}<br>$$<br>$\eta$为学习率</li>
+<li>学习规则-对训练样例(x,y),若感知机输出为$\hat{y}$，则权重调整:<script type="math/tex; mode=display">
+\begin{aligned}
+&w_{i} \leftarrow w_{i}+\Delta w_{i}\\
+&\Delta w_{i}=\eta(y-\hat{y}) x_{i}
+\end{aligned}</script>$\eta$为学习率</li>
 <li>只能处理线性可分问题</li>
 </ul>
 </li>
 <li><p><strong>多层前馈神经网络</strong>: 中间有隐含层(有激活函数)<br><strong>神经网络的学习过程</strong>: 根据训练数据来调整神经元之间的连接权(即权重)以及每个功能神经元的阈值。</p>
 </li>
 </ol>
-<h2 id="三、-误差逆传播-BP-算法-反向算法"><a href="#三、-误差逆传播-BP-算法-反向算法" class="headerlink" title="三、 误差逆传播(BP)算法/反向算法"></a>三、 误差逆传播(BP)算法/反向算法</h2><ol start="5">
+<h2 id="三、-误差逆传播-BP-算法-反向算法"><a href="#三、-误差逆传播-BP-算法-反向算法" class="headerlink" title="三、 误差逆传播(BP)算法/反向算法"></a>三、 误差逆传播(BP)算法/反向算法</h2><ol>
 <li><p><strong>BP网络</strong>-一般指用BP算法(一种迭代学习算法)训练的多层前馈神经网络。<br><img src="https://s2.ax1x.com/2020/03/04/3oBEVJ.png" alt="3oBEVJ.png"></p>
 <ul>
 <li>m个样本，d个属性，y为$l$维向量，激活函数为Sigmoid函数</li>
-<li>第k个样本的均方误差: $E_{k}=\frac{1}{2} \sum_{j=1}^{l}\left(\hat{y}<em>{j}^{k}-y</em>{j}^{k}\right)^{2}$</li>
+<li>第k个样本的均方误差: $E_{k}=\frac{1}{2} \sum_{j=1}^{l}\left(\hat{y}_{j}^{k}-y_{j}^{k}\right)^{2}$</li>
 </ul>
 </li>
 <li><p><strong>标准BP算法的推导</strong>: 确定隐层和输出层的权值和阈值(每次更新仅针对训练集中的一个样例)</p>
 <ul>
 <li>在迭代的每一轮采用广义感知机学习规则对参数进行更新估计，即$v \leftarrow v+\Delta v$)</li>
 <li>基于梯度下降策略，以目标的负梯度方向对参数进行调整。</li>
-<li><strong>更新公式</strong>(给定学习率$\eta$，常为0.1):<br>$$<br>\begin{array}{l}<br>\Delta w_{h j}=\eta g_{j} b_{h} \<br>\Delta \theta_{j}=-\eta g_{j} \<br>\Delta v_{i h}=\eta e_{h} x_{i} \<br>\Delta \gamma_{h}=-\eta e_{h}<br>\end{array}<br>$$</li>
-<li>其中输出层神经元的梯度项$g_{j}=-\frac{\partial E_{k}}{\partial \hat{y}<em>{j}^{k}} \cdot \frac{\partial \hat{y}</em>{j}^{k}}{\partial \beta_{j}}=\hat{y}<em>{j}^{k}\left(1-\hat{y}</em>{j}^{k}\right)\left(y_{j}^{k}-\hat{y}<em>{j}^{k}\right)$<br>隐层神经元的梯度项$e</em>{h}=-\frac{\partial E_{k}}{\partial b_{h}} \cdot \frac{\partial b_{h}}{\partial \alpha_{h}}=b_{h}\left(1-b_{h}\right) \sum_{j=1}^{l} w_{h j} g_{j}$</li>
+<li><strong>更新公式</strong>(给定学习率$\eta$，常为0.1): <script type="math/tex; mode=display">
+\begin{array}{l}
+\Delta w_{h j}=\eta g_{j} b_{h} \\
+\Delta \theta_{j}=-\eta g_{j} \\
+\Delta v_{i h}=\eta e_{h} x_{i} \\
+\Delta \gamma_{h}=-\eta e_{h}
+\end{array}</script></li>
+<li>其中输出层神经元的梯度项$g_{j}=-\frac{\partial E_{k}}{\partial \hat{y}_{j}^{k}} \cdot \frac{\partial \hat{y}_{j}^{k}}{\partial \beta_{j}}=\hat{y}_{j}^{k}\left(1-\hat{y}_{j}^{k}\right)\left(y_{j}^{k}-\hat{y}_{j}^{k}\right)$<br>隐层神经元的梯度项$e_{h}=-\frac{\partial E_{k}}{\partial b_{h}} \cdot \frac{\partial b_{h}}{\partial \alpha_{h}}=b_{h}\left(1-b_{h}\right) \sum_{j=1}^{l} w_{h j} g_{j}$</li>
 </ul>
 </li>
 <li><p><strong>BP算法的工作流程</strong>: 一样本传入输入层-产生输出层结果和误差-将误差逆向传播至隐层-计算梯度项-根据更新公式调整连接权和阈值-迭代过程循环进行-达到某停止条件(如训练误差很小)</p>
@@ -141,7 +151,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="四、-全局最小与局部极小"><a href="#四、-全局最小与局部极小" class="headerlink" title="四、 全局最小与局部极小"></a>四、 全局最小与局部极小</h2><ol start="11">
+<h2 id="四、-全局最小与局部极小"><a href="#四、-全局最小与局部极小" class="headerlink" title="四、 全局最小与局部极小"></a>四、 全局最小与局部极小</h2><ol>
 <li><p>神经网络的训练过程可看作<strong>参数寻优过程</strong>，即在参数空间中，寻找一组最优参数使得误差函数<strong>E</strong>最小。</p>
 </li>
 <li><p>两种最优: <strong>局部极小与全局最小</strong></p>
@@ -153,7 +163,7 @@
 <li><p><strong>参数寻优方法</strong>-基于梯度的搜索: 从某些初始解出发迭代寻找最优参数值，每次迭代中先计算误差函数在当前点的梯度，然后根据梯度确定搜索方向(如: 梯度下降法-沿负梯度方向)，但会陷入局部极小。<br><strong>解决办法</strong>-接近全局最小(启发式，缺乏理论保障):<br>使用多个初始值不同的神经网络，训练后取其最小误差的参数解；模拟退火；随机梯度下降(计算梯度时加入随机因素);遗传算法</p>
 </li>
 </ol>
-<h2 id="五、-其他常见神经网络"><a href="#五、-其他常见神经网络" class="headerlink" title="五、 其他常见神经网络"></a>五、 其他常见神经网络</h2><ol start="14">
+<h2 id="五、-其他常见神经网络"><a href="#五、-其他常见神经网络" class="headerlink" title="五、 其他常见神经网络"></a>五、 其他常见神经网络</h2><ol>
 <li><p><strong>RBF网络</strong>-径向基函数网络-单隐层前馈神经网络-与BP网络类似。使用径向基函数作为隐层神经元激活函数，而输出层则是对隐层神经元输出的线性组合。</p>
 </li>
 <li><p><strong>ART网络</strong>(自适应谐振理论网络)</p>
@@ -172,7 +182,7 @@
 <li><p><strong>Boltzmann机</strong>: 一种基于能量的模型。为网络状态定义一个能量，能量最小化时网络达到理想状态，而网络的训练就是在最小化这个能量函数。神经元(布尔型)分为两层:显层与隐层。显层用于表示数据的输入与输出，隐层则被理解为数据的内在表达。</p>
 </li>
 </ol>
-<h2 id="六、-深度学习"><a href="#六、-深度学习" class="headerlink" title="六、 深度学习"></a>六、 深度学习</h2><ol start="20">
+<h2 id="六、-深度学习"><a href="#六、-深度学习" class="headerlink" title="六、 深度学习"></a>六、 深度学习</h2><ol>
 <li><p>典型的<strong>深度学习模型</strong>就是很深层的神经网络-增加隐层数目和每隐层神经元数目-通过多层处理，逐渐将初始的低层特征表示转化为高层特征表示后，用简单模型即可完成复杂的分类等学习任务。<br>节省训练开销的方法: 无监督逐层训练/权共享</p>
 </li>
 <li><p><strong>无监督逐层训练</strong>是多隐层网络训练的有效手段。基本思想是每次训练一层隐结点，将上一层隐结点的输出作为输入，而本层隐结点的输出作为下一层的输入，这称为预训练;在预训练全部完成后，再对整个网络进行微调训练。<br>即将大量参数分组，对每组先找到局部看来比较好的设置，然后再基于这些局部较优的结果联合起来进行全局寻优。</p>

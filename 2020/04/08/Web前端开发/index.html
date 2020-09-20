@@ -232,7 +232,7 @@
 <li><p><strong>DOM</strong>: 文档对象模型，与平台和语言无关的应用程序接口(API)，可以动态地访问程序和脚本，并对其进行更新。<br><strong>DOM标准</strong>: 核心DOM；HTML DOM。</p>
 <ul>
 <li><strong>查找元素</strong><br><code>document.getElementById(&quot;id&quot;)</code><strong>最重要，用于JS代码中引入html元素，以便后续处理</strong><br><code>parent.getElementsByTagName(&quot;tag&quot;)</code><br><code>document.getElementsByName(&quot;name&quot;)</code><br><code>parent.getElementsByClassName(&quot;class&quot;)</code><br><code>parent.querySelector(All)(&quot;CSSselector&quot;)</code></li>
-<li><strong>修改</strong>(<strong>核心DOM</strong>)<br>属性值:<code> elem.getAttribute(&quot;属性名&quot;)</code>-读取<br><code>elem.setAttribute(&quot;属性名&quot;,value)</code>-修改<br><code>elem.hasAttribute(&quot;属性名&quot;)</code>-判断<br><code>elem.removeAttribute(&quot;属性名&quot;)</code>-移除<br>样式: <code>elem.style.属性名</code>(内联，去横杠变大写)</li>
+<li><strong>修改</strong>(<strong>核心DOM</strong>)<br>属性值:<code>elem.getAttribute(&quot;属性名&quot;)</code>-读取<br><code>elem.setAttribute(&quot;属性名&quot;,value)</code>-修改<br><code>elem.hasAttribute(&quot;属性名&quot;)</code>-判断<br><code>elem.removeAttribute(&quot;属性名&quot;)</code>-移除<br>样式: <code>elem.style.属性名</code>(内联，去横杠变大写)</li>
 <li><strong>添加元素</strong>:<br><code>elem=document.createElement(&quot;元素名&quot;)</code>-创建空元素<br><code>a.属性名=&quot;属性值&quot;</code>-设置属性<br><code>a.style.样式名(cssText)=&quot;&quot;</code>-设置样式<br><code>parentNode.appendChild(childNode)</code>/<code>parentNode.insertBefore(newChild，existingChild)</code>-添加到DOM树(优化: 使用文档片段)</li>
 </ul>
 </li>

@@ -97,9 +97,8 @@
        
   <h2 id="一、-Requests"><a href="#一、-Requests" class="headerlink" title="一、 Requests"></a>一、 Requests</h2><p><strong>自动爬取HTML页面，自动网络请求提交</strong></p>
 <ol>
-<li><p><strong>安装库</strong></p>
-<pre>pip install requests
-</pre> 
+<li><p><strong>安装库</strong><br><pre>pip install requests
+</pre> </p>
 <a id="more"></a>
 </li>
 <li><p><strong>Requests库的主要方法</strong></p>
@@ -113,9 +112,7 @@
 <li><strong>requests.delete()</strong> 向HTML网页提交删除请求</li>
 </ul>
 </li>
-<li><p><strong>get方法</strong></p>
-<pre>r = requests.get(url，params=None,**kwargs)</pre>
-<p>response对象中包含爬虫返回的内容，其属性:</p>
+<li><p><strong>get方法</strong><br><pre>r = requests.get(url，params=None,**kwargs)</pre><br>response对象中包含爬虫返回的内容，其属性:</p>
 <ul>
 <li><strong>r.status_code</strong> HTTP请求的返回状态(200为连接成功)</li>
 <li><strong>r.text</strong> HTTP响应的字符串，即url的页面内容</li>
@@ -154,7 +151,8 @@ if __name__ == "__main__":
 <li><p><strong>Robots协议</strong>(即网络爬虫排除标准)</p>
 <ul>
 <li>在网站根目录下的robots.txt文件中</li>
-<li>基本语法: <pre>User-agent: *<br>Disallow: /</pre></li>
+<li>基本语法: <pre>User-agent: *
+Disallow: /</pre></li>
 </ul>
 </li>
 <li><p>例子</p>
@@ -244,7 +242,7 @@ main()</pre>
 <ol>
 <li><p>正则表达式: 通用的字符串表达框架。<br><strong>编译</strong>: 将一个正则表达式语法的字符串转化成一个特(即一个对象)，该特征对应一组字符串。</p>
 </li>
-<li><p><strong>语法</strong>-<strong>常用操作符</strong>:<br>.任何单个字符<br>[ ]对单字符给出取值范围<br>[^]对单字符给出排除范围<br>*前一个字符出现0次或无限次<br>+前一个字符出现1次或无限次扩展<br>?前一个字符出现0次或1次<br>|左右表达式任意一个<br>{m}扩展前一个字符m次<br>{m,n}扩展前一个字符m至n次<br>^匹配字符串开头<br>$匹配字符串结尾<br>( )分组标记，内部只能使用 | 操作符<br>\d数字<br>\w单词字符</p>
+<li><p><strong>语法</strong>-<strong>常用操作符</strong>:<br>.任何单个字符<br>[ ]对单字符给出取值范围<br><sup><a href="#fn_" id="reffn_"></a></sup>对单字符给出排除范围<br>*前一个字符出现0次或无限次<br>+前一个字符出现1次或无限次扩展<br>?前一个字符出现0次或1次<br>|左右表达式任意一个<br>{m}扩展前一个字符m次<br>{m,n}扩展前一个字符m至n次<br>^匹配字符串开头<br>$匹配字符串结尾<br>( )分组标记，内部只能使用 | 操作符<br>\d数字<br>\w单词字符</p>
 </li>
 <li><p><strong>Re库</strong>-标准库<br>正则表达式-<strong>raw string</strong>(即不含转义符)-表示为: r’text’<br>主要功能函数: </p>
 <ul>
@@ -254,21 +252,14 @@ main()</pre>
 <li><strong>re.split(pattern,string,maxsplit=0,flags=0)</strong> 将一个字符串按照正则表达式匹配结果进行分割。返回列表类型(不匹配的) </li>
 <li><strong>re.finditer()</strong> 搜索字符串，返回一个匹配结果的迭代类型，每个迭代元素是match对象 </li>
 <li><strong>re.sub(pattern,repl,string,count=0,flags=0)</strong> 在一个字符串中替换所有匹配正则表达式的子串，返回替换后的字符串</li>
-<li>两种用法：<pre>rst = re.search() # 函数式(一次性操作)
-regex = re.complie(pattern，flags=0)#面向对象(编译后多次操作)
-rst = regex.search(string) <\pre>
-</li>
+<li>两种用法：<br><pre>rst = re.search() # 函数式(一次性操作)<br>regex = re.complie(pattern，flags=0)#面向对象(编译后多次操作)<br>rst = regex.search(string) &lt;\pre&gt;</li>
 </ul>
 </li>
 <li><p><strong>match对象</strong></p>
 <ul>
-<li>属性: </li>
+<li>属性:<br><strong>.string</strong> 待匹配的文本<br><strong>.re</strong> 匹配时使用的pattern对象<br><strong>.pos</strong> 正则表达式搜索文本的开始位置<br><strong>.endpos</strong> 正则表达式搜索文本的结束位置 </li>
+<li>方法:<br><strong>.group(0)</strong> 获得匹配后的字符串<br><strong>.start()</strong> 匹配字符串在原始字符串的开始位置<br><strong>.end()</strong> 匹配字符串在原始字符串的结束位置<br><strong>.span()</strong> 返回(.start(),.end())</li>
 </ul>
-<p><strong>.string</strong> 待匹配的文本<br>**.re** 匹配时使用的pattern对象<br>**.pos** 正则表达式搜索文本的开始位置<br>**.endpos** 正则表达式搜索文本的结束位置 </p>
-<ul>
-<li>方法: </li>
-</ul>
-<p><strong>.group(0)</strong> 获得匹配后的字符串<br>**.start()** 匹配字符串在原始字符串的开始位置<br>**.end()** 匹配字符串在原始字符串的结束位置<br>**.span()** 返回(.start(),.end())</p>
 </li>
 <li><p>同时匹配长短不同的多项时：</p>
 <ul>

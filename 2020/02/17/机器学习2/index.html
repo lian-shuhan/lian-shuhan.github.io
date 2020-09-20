@@ -109,7 +109,7 @@
 <li><p><strong>欠拟合</strong>: 对训练样本的一般性质尚未学好。(易克服)</p>
 </li>
 </ol>
-<h2 id="二、-模型评估方法"><a href="#二、-模型评估方法" class="headerlink" title="二、 模型评估方法"></a>二、 模型评估方法</h2><ol start="5">
+<h2 id="二、-模型评估方法"><a href="#二、-模型评估方法" class="headerlink" title="二、 模型评估方法"></a>二、 模型评估方法</h2><ol>
 <li><p>使用”<strong>验证集</strong>“来测试学习器对新样本的判别能力，然后以验证集的”测试误差”作为泛化误差的近似。<br>验证集应该尽可能与训练集互斥，即通过对原数据集进行适当处理，从中产生出训练集和验证集。</p>
 </li>
 <li><p><strong>留出法</strong>: 直接将数据集划分为两个互斥的集合(70%训练集，30%验证集)。一般用多次随机划分，重复实验后取均值作为留出法的评估结果。</p>
@@ -128,22 +128,30 @@
 <p><strong>训练数据</strong> = 训练集 + 验证集 ，基于验证集上的性能进行模型选择和调参。</p>
 </li>
 </ol>
-<h2 id="三、-性能度量"><a href="#三、-性能度量" class="headerlink" title="三、 性能度量"></a>三、 性能度量</h2><ol start="12">
-<li><p><strong>性能度量</strong>: 衡量模型泛化能力的评价标准。反映了任务需求。给定样例集$D=\left{\left(\boldsymbol{x}<em>{1}, y</em>{1}\right),\left(\boldsymbol{x}<em>{2}, y</em>{2}\right), \ldots,\left(\boldsymbol{x}<em>{m}, y</em>{m}\right)\right}$,将把学习器预测结果$f(x)$与真实标记$y$进行比较,以此评估学习器$f$的性能。</p>
+<h2 id="三、-性能度量"><a href="#三、-性能度量" class="headerlink" title="三、 性能度量"></a>三、 性能度量</h2><ol>
+<li><p><strong>性能度量</strong>: 衡量模型泛化能力的评价标准。反映了任务需求。给定样例集$D=\left\{\left(\boldsymbol{x}_{1}, y_{1}\right),\left(\boldsymbol{x}_{2}, y_{2}\right), \ldots,\left(\boldsymbol{x}_{m}, y_{m}\right)\right\}$,将把学习器预测结果$f(x)$与真实标记$y$进行比较,以此评估学习器$f$的性能。</p>
 </li>
-<li><p><strong>错误率</strong>:<br>$$E(f ; \mathcal{D})=\int_{\boldsymbol{x} \sim \mathcal{D}} \mathbb{I}(f(\boldsymbol{x}) \neq y) p(\boldsymbol{x}) \mathrm{d} \boldsymbol{x}$$<br><strong>精度</strong>:<br>$$<br>\begin{aligned}<br>\operatorname{acc}(f ; D) &amp;=\frac{1}{m} \sum_{i=1}^{m} \mathbb{I}\left(f\left(\boldsymbol{x}<em>{i}\right)=y</em>{i}\right) \<br>&amp;=1-E(f ; D)<br>\end{aligned}<br>$$</p>
-</li>
+<li><p><strong>错误率</strong>: </p>
+<script type="math/tex; mode=display">E(f ; \mathcal{D})=\int_{\boldsymbol{x} \sim \mathcal{D}} \mathbb{I}(f(\boldsymbol{x}) \neq y) p(\boldsymbol{x}) \mathrm{d} \boldsymbol{x}</script><p><strong>精度</strong>: </p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\operatorname{acc}(f ; D) &=\frac{1}{m} \sum_{i=1}^{m} \mathbb{I}\left(f\left(\boldsymbol{x}_{i}\right)=y_{i}\right) \\
+&=1-E(f ; D)
+\end{aligned}</script></li>
 <li><p><strong>查全率、查准率与F1</strong><br><img src="https://s2.ax1x.com/2020/02/17/3PYpTg.png" alt="3PYpTg.png"></p>
 <ul>
 <li>P-R曲线: 根据学习器的预测结果（置信度）对样例进行排序，按此顺序逐个把样本作为正例进行预测，则每次可以计算出当前的查全率R（横轴）和查准率P（纵轴）。</li>
 <li>平衡点(BEP): 查全率 = 查准率(越高越好)</li>
-<li>F1度量(常用)-$F_{\beta}$<br>$$F_{\beta}=\frac{\left(1+\beta^{2}\right) \times P \times R}{\left(\beta^{2} \times P\right)+R}$$<br>$\beta$越大(&gt;1)，查全率有更大影响。</li>
+<li>F1度量(常用)-$F_{\beta}$<script type="math/tex; mode=display">F_{\beta}=\frac{\left(1+\beta^{2}\right) \times P \times R}{\left(\beta^{2} \times P\right)+R}</script>$\beta$越大(&gt;1)，查全率有更大影响。</li>
 <li>n个二分类混淆矩阵: 先计算再平均（宏），先平均再计算(微)</li>
 </ul>
 </li>
 <li><p><strong>ROC与AUC</strong></p>
 <ul>
-<li>ROC(受试者工作特征)图: 假正例率FPR(横轴)，真正例率TPR(纵轴)<br>$$\begin{aligned}<br>&amp;\mathrm{TPR}=\frac{T P}{T P+F N}\<br>&amp;\mathrm{FPR}=\frac{F P}{T N+F P}<br>\end{aligned}<br>$$</li>
+<li>ROC(受试者工作特征)图: 假正例率FPR(横轴)，真正例率TPR(纵轴)<script type="math/tex; mode=display">\begin{aligned}
+&\mathrm{TPR}=\frac{T P}{T P+F N}\\
+&\mathrm{FPR}=\frac{F P}{T N+F P}
+\end{aligned}</script></li>
 <li>AUC: ROC曲线下方的面积。(越大越好)</li>
 <li>排序损失 = 1 - AUC</li>
 </ul>
@@ -155,23 +163,23 @@
 </ul>
 </li>
 </ol>
-<h2 id="四、-比较检验"><a href="#四、-比较检验" class="headerlink" title="四、 比较检验"></a>四、 比较检验</h2><ol start="17">
+<h2 id="四、-比较检验"><a href="#四、-比较检验" class="headerlink" title="四、 比较检验"></a>四、 比较检验</h2><ol>
 <li><p><strong>统计假设检验</strong>对性能度量结果进行比较(本节默认以错误率$\epsilon$为性能度量)。  </p>
 </li>
 <li><p><strong>假设检验</strong>: 一次留出法用<strong>二项检验</strong>，多次/交叉用<strong>t检验</strong></p>
 </li>
-<li><p><strong>交叉验证t检验</strong>: 对于两个使用相同k折交叉验证法的学习器，根据k对结果(即错误率)的差值对”学习器性能相同”假设做t检验。<br>若不同轮次训练集有重叠-测试错误率不独立-假设成立概率过高估计-采用**$5 \times 2$交叉验证**</p>
+<li><p><strong>交叉验证t检验</strong>: 对于两个使用相同k折交叉验证法的学习器，根据k对结果(即错误率)的差值对”学习器性能相同”假设做t检验。<br>若不同轮次训练集有重叠-测试错误率不独立-假设成立概率过高估计-采用<strong>$5 \times 2$交叉验证</strong></p>
 </li>
 <li><p><strong>McNemar 检验</strong>: 由两学习器分类差别列联表的e10和e01对”学习器性能相同”假设做卡方分布检验。</p>
 </li>
 <li><p><strong>Friedman检验与Nemenyi后续检验</strong>: 在一组数据集上对多个算法进行比较(算法比较序值表)。<br>“所有算法的性能相同”-后续检验进一步区分各算法</p>
 </li>
 </ol>
-<h2 id="五-偏差与方差"><a href="#五-偏差与方差" class="headerlink" title="五. 偏差与方差"></a>五. 偏差与方差</h2><ol start="22">
+<h2 id="五-偏差与方差"><a href="#五-偏差与方差" class="headerlink" title="五. 偏差与方差"></a>五. 偏差与方差</h2><ol>
 <li><p><strong>偏差方差分解</strong>是解释学习算法为何具有泛化性能的工具-对期望泛化错误率进行拆解。</p>
 </li>
-<li><p>推导<br>$$E(f ; D)=\mathbb{E}<em>{D}\left[\left(f(\boldsymbol{x} ; D)-y</em>{D}\right)^{2}\right]$$<br>$$=\mathbb{E}<em>{D}\left[(f(\boldsymbol{x} ; D)-\bar{f}(\boldsymbol{x}))^{2}\right]+(\bar{f}(\boldsymbol{x})-y)^{2}+\mathbb{E}</em>{D}\left[\left(y_{D}-y\right)^{2}\right]$$<br>$$E(f ; D)=\operatorname{bias}^{2}(\boldsymbol{x})+\operatorname{var}(\boldsymbol{x})+\varepsilon^{2}$$</p>
-</li>
+<li><p>推导</p>
+<script type="math/tex; mode=display">E(f ; D)=\mathbb{E}_{D}\left[\left(f(\boldsymbol{x} ; D)-y_{D}\right)^{2}\right]</script><script type="math/tex; mode=display">=\mathbb{E}_{D}\left[(f(\boldsymbol{x} ; D)-\bar{f}(\boldsymbol{x}))^{2}\right]+(\bar{f}(\boldsymbol{x})-y)^{2}+\mathbb{E}_{D}\left[\left(y_{D}-y\right)^{2}\right]</script><script type="math/tex; mode=display">E(f ; D)=\operatorname{bias}^{2}(\boldsymbol{x})+\operatorname{var}(\boldsymbol{x})+\varepsilon^{2}</script></li>
 <li><p><strong>期望泛化误差</strong>可分解为偏差、方差与噪声之和。<br>即泛化性能是由学习算法的能力、数据的充分性以及学习任务本身的难度所共同决定的。</p>
 </li>
 <li><p><strong>偏差一方差窘境</strong><br><img src="https://s2.ax1x.com/2020/02/19/3EPhrR.png" alt="3EPhrR.png"></p>
